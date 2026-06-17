@@ -1,0 +1,10 @@
+{
+  "page": {
+    "title": "SV Tailoring",
+    "subtitle": "Welcome to the workshop."
+  },
+  "calculator": {
+    "question": "Which garment are we working on?",
+    "placeholder": "Select your garment..."
+  }
+}

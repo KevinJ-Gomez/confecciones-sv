@@ -1,0 +1,10 @@
+{
+  "page": {
+    "title": "Confecciones SV",
+    "subtitle": "Bienvenido al taller."
+  },
+  "calculator": {
+    "question": "¿Qué prenda vamos a trabajar?",
+    "placeholder": "Selecciona tu prenda..."
+  }
+}
