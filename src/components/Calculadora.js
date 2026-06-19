@@ -29,8 +29,10 @@ export default function Calculadora({ dict }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   
-  // AHORA: Guardamos el OBJETO completo de la prenda seleccionada, no un string de texto
   const [selectedPrenda, setSelectedPrenda] = useState(null);
+  
+  // NUEVO ESTADO: Almacena el servicio elegido
+  const [selectedService, setSelectedService] = useState(null);
 
   const ref = useRef(null);
   const mouseX = useMotionValue(0);
@@ -47,11 +49,16 @@ export default function Calculadora({ dict }) {
     mouseY.set(event.clientY - (rect.top + rect.height / 2));
   }
 
-  // Modificamos el handleSelect para que reciba el objeto prenda completo
-  const handleSelect = (prendaObj) => {
+  const handleSelectPrenda = (prendaObj) => {
     setSelectedPrenda(prendaObj);
+    setSelectedService(null); // Reseteamos el servicio si cambia de prenda
     setIsOpen(false);
     setTimeout(() => setCurrentStep(2), 200);
+  };
+
+  const handleSelectService = (serviceObj) => {
+    setSelectedService(serviceObj);
+    // En el próximo hito, esto disparará el Paso 3 (El Presupuesto Final)
   };
 
   return (
@@ -59,7 +66,7 @@ export default function Calculadora({ dict }) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
-      className="w-full flex justify-center py-20 relative h-[650px]"
+      className="w-full flex justify-center py-20 relative h-[700px]"
       style={{ perspective: "2000px" }}
     >
       <motion.div 
@@ -68,13 +75,9 @@ export default function Calculadora({ dict }) {
       >
         
         {/* ======================================= */}
-        {/* PASO 1: TARJETA CLARA (Base)            */}
+        {/* PASO 1: TARJETA CLARA (Prendas)         */}
         {/* ======================================= */}
-        <motion.div 
-          variants={step1Variants}
-          animate={currentStep === 1 ? "active" : "background"}
-          className="absolute w-full"
-        >
+        <motion.div variants={step1Variants} animate={currentStep === 1 ? "active" : "background"} className="absolute w-full">
           <div className="bg-[#FAF7F2] shadow-[0_40px_80px_-20px_rgba(45,41,38,0.2)] rounded-sm p-1.5 relative overflow-hidden">
             <div className="border-[1.5px] border-dashed border-dorado/40 p-8 relative h-full">
               
@@ -89,31 +92,19 @@ export default function Calculadora({ dict }) {
                 {dict.question}
               </h2>
               
-              <button 
-                onClick={() => currentStep === 1 && setIsOpen(!isOpen)}
-                className="w-full text-left flex justify-between items-center outline-none border-b border-marron-oscuro/20 pb-3 hover:border-dorado transition-colors group"
-              >
-                {/* LECTURA DINÁMICA: Si hay prenda, imprime su 'label' */}
+              <button onClick={() => currentStep === 1 && setIsOpen(!isOpen)} className="w-full text-left flex justify-between items-center outline-none border-b border-marron-oscuro/20 pb-3 hover:border-dorado transition-colors group">
                 <span className={`text-sm font-light uppercase tracking-widest ${selectedPrenda ? 'text-marron-oscuro font-medium' : 'text-marron-oscuro/40'}`}>
                   {selectedPrenda ? selectedPrenda.label : dict.placeholder}
                 </span>
-                <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="text-[10px] text-dorado group-hover:text-marron-oscuro transition-colors">
-                  ▼
-                </motion.span>
+                <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="text-[10px] text-dorado group-hover:text-marron-oscuro transition-colors">▼</motion.span>
               </button>
 
               <AnimatePresence>
                 {isOpen && (
                   <motion.div variants={menuVariants} initial="hidden" animate="visible" exit="exit" className="overflow-hidden relative z-10 mt-4">
                     <div className="flex flex-col gap-1">
-                      {/* MAPEADO DINÁMICO: Leemos dict.items desde el JSON */}
                       {dict.items.map((prenda) => (
-                        <motion.button 
-                          key={prenda.id} 
-                          variants={tagVariants} 
-                          onClick={() => handleSelect(prenda)} 
-                          className="group relative flex items-center w-full text-left px-2 py-3 outline-none"
-                        >
+                        <motion.button key={prenda.id} variants={tagVariants} onClick={() => handleSelectPrenda(prenda)} className="group relative flex items-center w-full text-left px-2 py-3 outline-none">
                           <span className="absolute left-0 w-1 h-1 rounded-full bg-dorado opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                           <span className="text-sm font-serif italic text-marron-oscuro/70 group-hover:text-dorado group-hover:translate-x-3 transition-all duration-300">
                             {prenda.label}
@@ -130,7 +121,7 @@ export default function Calculadora({ dict }) {
 
 
         {/* ======================================= */}
-        {/* PASO 2: TARJETA OSCURA (Apilada encima) */}
+        {/* PASO 2: TARJETA OSCURA (Servicios)      */}
         {/* ======================================= */}
         <AnimatePresence>
           {currentStep === 2 && (
@@ -144,21 +135,45 @@ export default function Calculadora({ dict }) {
 
                 <div className="border-[1.5px] border-dashed border-dorado/30 p-8">
                   
-                  <div className="flex justify-between items-center mb-8 text-[9px] font-mono tracking-[0.2em] text-crema/50 uppercase">
+                  <div className="flex justify-between items-center mb-6 text-[9px] font-mono tracking-[0.2em] text-crema/50 uppercase">
                     <span>[ Paso 02 ]</span>
-                    {/* OPTIONAL CHAINING: Protegemos contra nulos usando '?.' */}
                     <span className="text-crema">{selectedPrenda?.label}</span>
                   </div>
 
-                  <h2 className="text-crema text-3xl font-serif leading-none tracking-tight mb-8">
+                  <h2 className="text-crema text-3xl font-serif leading-none tracking-tight mb-6">
                     ¿Qué servicio aplicamos?
                   </h2>
                   
+                  {/* LISTA DINÁMICA DE SERVICIOS */}
+                  <div className="flex flex-col gap-1 mb-8">
+                    {selectedPrenda?.services?.map((servicio, index) => (
+                      <motion.button
+                        key={servicio.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + (index * 0.1) }} // Efecto cascada escalonado
+                        onClick={() => handleSelectService(servicio)}
+                        className={`group relative flex justify-between items-center w-full text-left px-2 py-3 outline-none border-b border-dorado/10 transition-colors ${selectedService?.id === servicio.id ? 'bg-dorado/10' : 'hover:bg-dorado/5'}`}
+                      >
+                        <div className="flex items-center">
+                          <span className={`absolute left-0 w-1 h-1 rounded-full bg-dorado transition-opacity duration-300 ${selectedService?.id === servicio.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></span>
+                          <span className={`text-sm font-serif italic transition-all duration-300 ${selectedService?.id === servicio.id ? 'text-dorado translate-x-3' : 'text-crema/70 group-hover:text-dorado group-hover:translate-x-3'}`}>
+                            {servicio.label}
+                          </span>
+                        </div>
+                        {/* Indicador de precio orientativo (Aporta valor inmediato) */}
+                        <span className="text-[10px] font-mono text-dorado/60 tracking-widest">
+                          + {servicio.price}€
+                        </span>
+                      </motion.button>
+                    ))}
+                  </div>
+                  
                   <button 
-                    className="text-xs font-mono tracking-widest text-dorado hover:text-crema transition-colors uppercase" 
-                    onClick={() => { setCurrentStep(1); setSelectedPrenda(null); }}
+                    className="text-xs font-mono tracking-widest text-dorado hover:text-crema transition-colors uppercase w-full text-left" 
+                    onClick={() => { setCurrentStep(1); setSelectedService(null); }}
                   >
-                    ← Volver (Descoser)
+                    ← Volver
                   </button>
                 </div>
               </div>

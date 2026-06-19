@@ -10,13 +10,69 @@
     "timeLabel": "Sys.Time:",
     "awaiting": "AWAITING",
     "ok": "OK",
-    "items": [
-      { "id": "pantalon", "label": "Trousers / Jeans", "basePrice": 10 },
-      { "id": "camisa", "label": "Shirt / Blouse", "basePrice": 12 },
-      { "id": "vestido", "label": "Dress", "basePrice": 20 },
-      { "id": "chaqueta", "label": "Jacket / Blazer", "basePrice": 15 },
-      { "id": "falda", "label": "Skirt", "basePrice": 10 },
-      { "id": "abrigo", "label": "Coat", "basePrice": 20 }
+"items": [
+      { 
+        "id": "pantalon", 
+        "label": "Trousers / Jeans", 
+        "basePrice": 10,
+        "services": [
+          { "id": "bajo_normal", "label": "Hemming (Machine)", "price": 8 },
+          { "id": "bajo_mano", "label": "Hemming (Hand-stitched)", "price": 10 },
+          { "id": "estrechar", "label": "Take in Waist/Legs", "price": 12 },
+          { "id": "cremallera", "label": "Zipper Replacement", "price": 11 },
+          { "id": "parche", "label": "Patch / Darning", "price": 10 }
+        ]
+      },
+      { 
+        "id": "camisa", 
+        "label": "Shirt / Blouse", 
+        "basePrice": 12,
+        "services": [
+          { "id": "estrechar", "label": "Take in Sides", "price": 12 },
+          { "id": "subir_puno", "label": "Shorten Sleeves / Cuffs", "price": 15 },
+          { "id": "bajo", "label": "Hemming", "price": 8 }
+        ]
+      },
+      { 
+        "id": "vestido", 
+        "label": "Dress", 
+        "basePrice": 20,
+        "services": [
+          { "id": "bajo_vestido", "label": "Dress Hemming", "price": 20 },
+          { "id": "estrechar", "label": "Take in", "price": 12 },
+          { "id": "ampliar", "label": "Let out", "price": 15 }
+        ]
+      },
+      { 
+        "id": "chaqueta", 
+        "label": "Jacket / Blazer", 
+        "basePrice": 15,
+        "services": [
+          { "id": "cremallera_chaqueta", "label": "Zipper Replacement", "price": 15 },
+          { "id": "subir_puno", "label": "Shorten Sleeves", "price": 15 },
+          { "id": "estrechar", "label": "Take in Sides", "price": 12 }
+        ]
+      },
+      { 
+        "id": "falda", 
+        "label": "Skirt", 
+        "basePrice": 10,
+        "services": [
+          { "id": "bajo_falda", "label": "Skirt Hemming", "price": 10 },
+          { "id": "estrechar", "label": "Take in", "price": 12 },
+          { "id": "ampliar", "label": "Let out", "price": 15 },
+          { "id": "cambio_goma", "label": "Elastic Band Replacement", "price": 12 }
+        ]
+      },
+      { 
+        "id": "abrigo", 
+        "label": "Coat", 
+        "basePrice": 20,
+        "services": [
+          { "id": "cremallera_gruesa", "label": "Heavy Zipper Replacement", "price": 20 },
+          { "id": "bajo_abrigo", "label": "Coat Hemming", "price": 20 }
+        ]
+      }
     ]
 
   }

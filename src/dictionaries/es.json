@@ -10,13 +10,69 @@
     "timeLabel": "Hora.Sis:",
     "awaiting": "ESPERANDO",
     "ok": "OK",
-    "items": [
-      { "id": "pantalon", "label": "Pantalón", "basePrice": 10 },
-      { "id": "camisa", "label": "Camisa / Blusa", "basePrice": 12 },
-      { "id": "vestido", "label": "Vestido", "basePrice": 20 },
-      { "id": "chaqueta", "label": "Chaqueta / Americana", "basePrice": 15 },
-      { "id": "falda", "label": "Falda", "basePrice": 10 },
-      { "id": "abrigo", "label": "Abrigo", "basePrice": 20 }
+"items": [
+      { 
+        "id": "pantalon", 
+        "label": "Pantalón", 
+        "basePrice": 10,
+        "services": [
+          { "id": "bajo_normal", "label": "Coger Bajo (Máquina)", "price": 8 },
+          { "id": "bajo_mano", "label": "Coger Bajo (A Mano)", "price": 10 },
+          { "id": "estrechar", "label": "Estrechar Pantalón", "price": 12 },
+          { "id": "cremallera", "label": "Cambio de Cremallera", "price": 11 },
+          { "id": "parche", "label": "Parche / Zurcido", "price": 10 }
+        ]
+      },
+      { 
+        "id": "camisa", 
+        "label": "Camisa / Blusa", 
+        "basePrice": 12,
+        "services": [
+          { "id": "estrechar", "label": "Estrechar Blusa", "price": 12 },
+          { "id": "subir_puno", "label": "Subir Puño / Manga", "price": 15 },
+          { "id": "bajo", "label": "Coger Bajo", "price": 8 }
+        ]
+      },
+      { 
+        "id": "vestido", 
+        "label": "Vestido", 
+        "basePrice": 20,
+        "services": [
+          { "id": "bajo_vestido", "label": "Bajo de Vestido", "price": 20 },
+          { "id": "estrechar", "label": "Estrechar", "price": 12 },
+          { "id": "ampliar", "label": "Ampliar", "price": 15 }
+        ]
+      },
+      { 
+        "id": "chaqueta", 
+        "label": "Chaqueta / Americana", 
+        "basePrice": 15,
+        "services": [
+          { "id": "cremallera_chaqueta", "label": "Cambio Cremallera", "price": 15 },
+          { "id": "subir_puno", "label": "Subir Puño", "price": 15 },
+          { "id": "estrechar", "label": "Estrechar", "price": 12 }
+        ]
+      },
+      { 
+        "id": "falda", 
+        "label": "Falda", 
+        "basePrice": 10,
+        "services": [
+          { "id": "bajo_falda", "label": "Bajo de Falda", "price": 10 },
+          { "id": "estrechar", "label": "Estrechar", "price": 12 },
+          { "id": "ampliar", "label": "Ampliar", "price": 15 },
+          { "id": "cambio_goma", "label": "Cambio de Goma", "price": 12 }
+        ]
+      },
+      { 
+        "id": "abrigo", 
+        "label": "Abrigo", 
+        "basePrice": 20,
+        "services": [
+          { "id": "cremallera_gruesa", "label": "Cambio Cremallera Gruesa", "price": 20 },
+          { "id": "bajo_abrigo", "label": "Coger Bajo", "price": 20 }
+        ]
+      }
     ]
   }
 }
