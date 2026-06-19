@@ -22,25 +22,36 @@
 17. Análisis Pre/Post: Auditoría interna silenciosa de normas.
 18. Data-First: Datos (JSON/DB) antes que lógica UI.
 19. Proactividad UI/UX: Proponer mejoras de diseño y conversión constantemente.
+20. Sincronización Continua: Notificación obligatoria al añadir información nueva.
+21. Código Completo Obligatorio: Siempre devolver el archivo completo + explicación.
+22. Checklist Visible: Comprobar normas visiblemente antes de responder.
 
 ## 2. INFORMACIÓN DEL CLIENTE Y NEGOCIO
 - **Empresa:** Confecciones SV.
 - **Misión:** Recuperar prendas con cuidado y profesionalismo, dando una segunda vida.
 - **Teléfonos:** 657 730 970 / 602 571 925
-- **Estilo Visual (Figma):** Alta Costura, minimalista, Neo-Editorial. Colores: Crema/Arena (Fondo), Marrón Oscuro (Texto principal), Dorado (Acentos/Hilos).
-- **Tarifas Reales:** - Bajos: 8€ - 20€ (dependiendo de a mano/máquina/vestido).
+- **Email Corporativo:** confecciones.sv10@gmail.com
+- **Tarifas Reales (Base "Desde"):** - Bajos: 8€ - 20€ (dependiendo de a mano/máquina/vestido).
   - Estrechar: 12€ (pantalón/blusa).
   - Cremalleras: 11€ (vaquero) - 20€ (chaqueta).
   - Otros: Parches (10€), Cambio goma (12€).
-- **Email Corporativo:** confecciones.sv10@gmail.com
 
+## 3. IDENTIDAD VISUAL Y BRANDING
+- **Estilo Visual:** Alta Costura, minimalista, Neo-Editorial.
+- **Paleta de Colores:** Crema/Arena `#FAF7F2` (Fondo), Marrón Oscuro `#2D2926` (Texto/Fondos pesados), Dorado `#C5A059` (Acentos/Hilos/Advertencias elegantes). Botón CTA WhatsApp: `#25D366`.
+- **Logotipos Finalizados:** Exportados en SVG sin fondo. 
+  - Monograma (`SV`) en Frame 100x100px.
+  - Logo Tipográfico (`Confecciones + Línea + SV`) en Frame 400x120px. Ubicados en `/public/assets/branding/`.
 
-## 3. ESTADO ACTUAL DEL DESARROLLO Y ARQUITECTURA
+## 4. ESTADO ACTUAL DEL DESARROLLO Y ARQUITECTURA
 - **Stack:** Next.js 16 (App Router), TailwindCSS v4, Framer Motion.
 - **Estructura i18n:** Patrón de diccionarios en servidor (`src/dictionaries/es.json` y `en.json`) inyectados por parámetros de ruta dinámica `[lang]`.
-- **Hito Actual:** Fase 3 (Lógica y Flujo Multi-Paso de la Calculadora).
-- **Logros Recientes:** - Diseño UI consolidado de la Calculadora: Animación en Eje Z (Apilamiento en profundidad) con diseño "Artesanal/Editorial" (Pespuntes CSS, tipografía Serif/Mono, micro-interacciones sin ruido visual).
-  - Acuerdo UX: Calculadora limitada al "Top 6" de prendas. Casos excepcionales (Hogar/A medida) irán en un Ghost Button externo.
+- **Hito Actual:** Calculadora finalizada (`Calculadora.jsx`).
+- **Logros Recientes / Arquitectura UI:**
+  - **Componente Calculadora:** Arquitectura de *Stacking Cards* (Tarjetas apiladas en el Eje Z) usando `AnimatePresence` y físicas `spring` de Framer Motion.
+  - **Flujo de 3 Pasos:** 1. Prenda (Tarjeta clara) -> 2. Servicio (Tarjeta oscura) -> 3. Presupuesto Base (Tarjeta clara).
+  - **Lógica de Negocio (UX):** Los precios se muestran con la etiqueta "Desde" (badge dorado). Incluye un "disclaimer" elegante para proteger la tarifa final, indicando que depende del tejido.
+  - **Conversión:** Botón de WhatsApp pre-formatea el mensaje del cliente asumiendo que el precio es "orientativo". Se incluye *fallback* para escritorio (enlaces `tel:` con ambos números de teléfono).
 
-## 4. INSTRUCCIÓN DE ARRANQUE PARA LA IA
-Al leer esto, confirma que has asimilado las 19 normas, la información del cliente y el estado del código. Prepárate para continuar exactamente donde lo dejamos.
+## 5. INSTRUCCIÓN DE ARRANQUE PARA LA IA
+Al leer esto, confirma que has asimilado las 22 normas, la información del cliente, el branding y el estado exacto del componente `Calculadora.jsx`. Prepárate para proponerme el siguiente Issue a abordar.

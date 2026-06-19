@@ -14,6 +14,12 @@ const step2Variants = {
   exit: { z: 200, opacity: 0, transition: { duration: 0.2 } }
 };
 
+const step3Variants = {
+  hidden: { z: 200, y: 100, opacity: 0 },
+  visible: { z: 0, y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 25, delay: 0.1 } },
+  exit: { z: 200, opacity: 0, transition: { duration: 0.2 } }
+};
+
 const menuVariants = {
   hidden: { height: 0, opacity: 0 },
   visible: { height: "auto", opacity: 1, transition: { type: "spring", stiffness: 500, damping: 30, staggerChildren: 0.05, delayChildren: 0.02 } },
@@ -30,8 +36,6 @@ export default function Calculadora({ dict }) {
   const [isOpen, setIsOpen] = useState(false);
   
   const [selectedPrenda, setSelectedPrenda] = useState(null);
-  
-  // NUEVO ESTADO: Almacena el servicio elegido
   const [selectedService, setSelectedService] = useState(null);
 
   const ref = useRef(null);
@@ -51,15 +55,19 @@ export default function Calculadora({ dict }) {
 
   const handleSelectPrenda = (prendaObj) => {
     setSelectedPrenda(prendaObj);
-    setSelectedService(null); // Reseteamos el servicio si cambia de prenda
+    setSelectedService(null);
     setIsOpen(false);
     setTimeout(() => setCurrentStep(2), 200);
   };
 
   const handleSelectService = (serviceObj) => {
     setSelectedService(serviceObj);
-    // En el próximo hito, esto disparará el Paso 3 (El Presupuesto Final)
+    setTimeout(() => setCurrentStep(3), 200);
   };
+
+  const total = (selectedPrenda?.price || 0) + (selectedService?.price || 0);
+  const whatsappMessage = `Hola, quiero solicitar presupuesto para el servicio de ${selectedService?.label} en ${selectedPrenda?.label}. Entiendo que el coste base es desde ${total}€ y puede variar según el tejido y trabajo final.`;
+  const whatsappUrl = `https://wa.me/34657730970?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div 
@@ -82,19 +90,19 @@ export default function Calculadora({ dict }) {
             <div className="border-[1.5px] border-dashed border-dorado/40 p-8 relative h-full">
               
               <div className="flex justify-between items-center mb-8 text-[9px] font-mono tracking-[0.2em] text-marron-oscuro/60 uppercase">
-                <span>{dict.step}</span>
+                <span>{dict?.step || "PASO 01"}</span>
                 <span className={`font-bold ${selectedPrenda ? "text-[#4A5D23]" : "text-dorado"}`}>
-                  {selectedPrenda ? dict.ok : dict.awaiting}
+                  {selectedPrenda ? (dict?.ok || "COMPLETADO") : (dict?.awaiting || "ESPERANDO")}
                 </span>
               </div>
 
               <h2 className="text-marron-oscuro text-4xl font-serif leading-none tracking-tight mb-8">
-                {dict.question}
+                {dict?.question || "¿Qué prenda deseas arreglar?"}
               </h2>
               
               <button onClick={() => currentStep === 1 && setIsOpen(!isOpen)} className="w-full text-left flex justify-between items-center outline-none border-b border-marron-oscuro/20 pb-3 hover:border-dorado transition-colors group">
                 <span className={`text-sm font-light uppercase tracking-widest ${selectedPrenda ? 'text-marron-oscuro font-medium' : 'text-marron-oscuro/40'}`}>
-                  {selectedPrenda ? selectedPrenda.label : dict.placeholder}
+                  {selectedPrenda ? selectedPrenda.label : (dict?.placeholder || "Selecciona una opción...")}
                 </span>
                 <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="text-[10px] text-dorado group-hover:text-marron-oscuro transition-colors">▼</motion.span>
               </button>
@@ -103,7 +111,7 @@ export default function Calculadora({ dict }) {
                 {isOpen && (
                   <motion.div variants={menuVariants} initial="hidden" animate="visible" exit="exit" className="overflow-hidden relative z-10 mt-4">
                     <div className="flex flex-col gap-1">
-                      {dict.items.map((prenda) => (
+                      {dict?.items?.map((prenda) => (
                         <motion.button key={prenda.id} variants={tagVariants} onClick={() => handleSelectPrenda(prenda)} className="group relative flex items-center w-full text-left px-2 py-3 outline-none">
                           <span className="absolute left-0 w-1 h-1 rounded-full bg-dorado opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                           <span className="text-sm font-serif italic text-marron-oscuro/70 group-hover:text-dorado group-hover:translate-x-3 transition-all duration-300">
@@ -144,14 +152,13 @@ export default function Calculadora({ dict }) {
                     ¿Qué servicio aplicamos?
                   </h2>
                   
-                  {/* LISTA DINÁMICA DE SERVICIOS */}
                   <div className="flex flex-col gap-1 mb-8">
                     {selectedPrenda?.services?.map((servicio, index) => (
                       <motion.button
                         key={servicio.id}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 + (index * 0.1) }} // Efecto cascada escalonado
+                        transition={{ delay: 0.3 + (index * 0.1) }} 
                         onClick={() => handleSelectService(servicio)}
                         className={`group relative flex justify-between items-center w-full text-left px-2 py-3 outline-none border-b border-dorado/10 transition-colors ${selectedService?.id === servicio.id ? 'bg-dorado/10' : 'hover:bg-dorado/5'}`}
                       >
@@ -161,10 +168,17 @@ export default function Calculadora({ dict }) {
                             {servicio.label}
                           </span>
                         </div>
-                        {/* Indicador de precio orientativo (Aporta valor inmediato) */}
-                        <span className="text-[10px] font-mono text-dorado/60 tracking-widest">
-                          + {servicio.price}€
-                        </span>
+                        
+                        {/* UX: Nuevo diseño para la etiqueta de precio "Desde" */}
+                        <div className="flex items-center gap-1.5 bg-dorado/10 px-2.5 py-1 rounded-sm border border-dorado/20">
+                          <span className="text-[8px] font-mono tracking-widest uppercase text-dorado/70">
+                            Desde
+                          </span>
+                          <span className="text-xs font-serif font-medium text-dorado">
+                            {servicio.price}€
+                          </span>
+                        </div>
+                        
                       </motion.button>
                     ))}
                   </div>
@@ -174,6 +188,76 @@ export default function Calculadora({ dict }) {
                     onClick={() => { setCurrentStep(1); setSelectedService(null); }}
                   >
                     ← Volver
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ======================================= */}
+        {/* PASO 3: TARJETA DE PRESUPUESTO FINAL    */}
+        {/* ======================================= */}
+        <AnimatePresence>
+          {currentStep === 3 && (
+            <motion.div variants={step3Variants} initial="hidden" animate="visible" exit="exit" className="absolute w-full">
+              <div className="bg-[#FAF7F2] shadow-2xl rounded-sm p-1.5 relative text-marron-oscuro">
+                
+                <svg className="absolute left-1/2 -translate-x-1/2 -top-16 w-4 h-16 pointer-events-none z-20 overflow-visible" viewBox="0 0 10 100" preserveAspectRatio="none">
+                  <motion.path d="M 5 0 L 5 100" stroke="#C5A059" strokeWidth="2" strokeDasharray="4 6" fill="transparent" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.2 }} />
+                  <circle cx="5" cy="100" r="3" fill="#C5A059" />
+                </svg>
+
+                <div className="border-[1.5px] border-dashed border-dorado/40 p-8 text-center flex flex-col h-full">
+                  
+                  <div className="mb-4 text-[9px] font-mono tracking-[0.2em] text-marron-oscuro/50 uppercase">
+                    <span>[ Presupuesto Base ]</span>
+                  </div>
+
+                  <h2 className="text-marron-oscuro text-5xl font-serif leading-none tracking-tight mb-2 flex flex-col items-center justify-center">
+                    <span className="text-xs font-mono tracking-widest text-marron-oscuro/60 mb-1 uppercase">Desde</span>
+                    {total}€
+                  </h2>
+                  <p className="text-xs font-light tracking-widest uppercase text-marron-oscuro/80 mb-2">
+                    {selectedPrenda?.label} / {selectedService?.label}
+                  </p>
+
+                  <small className="text-[10px] font-serif italic leading-relaxed text-[#C5A059] block mb-6 px-4">
+                    * El coste final depende del tejido de la prenda y la dificultad de la confección. Evaluaremos la prenda contigo en persona.
+                  </small>
+                  
+                  {/* BOTÓN WHATSAPP */}
+                  <a 
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex justify-center items-center gap-2 w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3 rounded-sm text-xs font-bold uppercase tracking-widest transition-colors shadow-sm mb-4"
+                  >
+                    Solicitar por WhatsApp
+                  </a>
+
+                  {/* SECCIÓN DE LLAMADA TRADICIONAL */}
+                  <div className="mt-2 pt-4 border-t border-marron-oscuro/10">
+                    <p className="text-[9px] font-mono tracking-widest text-marron-oscuro/50 uppercase mb-3">
+                      O llámanos directamente:
+                    </p>
+                    <div className="flex justify-center items-center gap-3 text-sm font-serif italic text-marron-oscuro">
+                      <a href="tel:+34657730970" className="hover:text-dorado transition-colors">
+                        657 730 970
+                      </a>
+                      <span className="text-marron-oscuro/20">|</span>
+                      <a href="tel:+34602571925" className="hover:text-dorado transition-colors">
+                        602 571 925
+                      </a>
+                    </div>
+                  </div>
+                  
+                  {/* BOTÓN REINICIAR */}
+                  <button 
+                    className="mt-6 text-[10px] font-mono tracking-widest text-marron-oscuro/40 hover:text-marron-oscuro transition-colors uppercase" 
+                    onClick={() => { setCurrentStep(1); setSelectedPrenda(null); setSelectedService(null); setIsOpen(false); }}
+                  >
+                    Empezar de nuevo
                   </button>
                 </div>
               </div>
