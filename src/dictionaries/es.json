@@ -9,6 +9,14 @@
     "step": "[ Paso 01]",
     "timeLabel": "Hora.Sis:",
     "awaiting": "ESPERANDO",
-    "ok": "OK"
+    "ok": "OK",
+    "items": [
+      { "id": "pantalon", "label": "Pantalón", "basePrice": 10 },
+      { "id": "camisa", "label": "Camisa / Blusa", "basePrice": 12 },
+      { "id": "vestido", "label": "Vestido", "basePrice": 20 },
+      { "id": "chaqueta", "label": "Chaqueta / Americana", "basePrice": 15 },
+      { "id": "falda", "label": "Falda", "basePrice": 10 },
+      { "id": "abrigo", "label": "Abrigo", "basePrice": 20 }
+    ]
   }
 }

@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 
-// --- FÍSICAS DE LA OPCIÓN 1 (APILAMIENTO Z) ---
 const step1Variants = {
   active: { z: 0, scale: 1, opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring", stiffness: 300, damping: 25 } },
   background: { z: -150, scale: 0.9, opacity: 0.4, y: -40, filter: "blur(4px)", transition: { type: "spring", stiffness: 300, damping: 25 } }
@@ -29,6 +28,8 @@ const tagVariants = {
 export default function Calculadora({ dict }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
+  
+  // AHORA: Guardamos el OBJETO completo de la prenda seleccionada, no un string de texto
   const [selectedPrenda, setSelectedPrenda] = useState(null);
 
   const ref = useRef(null);
@@ -46,13 +47,12 @@ export default function Calculadora({ dict }) {
     mouseY.set(event.clientY - (rect.top + rect.height / 2));
   }
 
-  const handleSelect = (prenda) => {
-    setSelectedPrenda(prenda);
+  // Modificamos el handleSelect para que reciba el objeto prenda completo
+  const handleSelect = (prendaObj) => {
+    setSelectedPrenda(prendaObj);
     setIsOpen(false);
-    setTimeout(() => setCurrentStep(2), 200); // Pequeña pausa antes de hundir la tarjeta
+    setTimeout(() => setCurrentStep(2), 200);
   };
-
-  const prendasArray = ["Pantalón", "Camisa", "Vestido"];
 
   return (
     <div 
@@ -78,7 +78,6 @@ export default function Calculadora({ dict }) {
           <div className="bg-[#FAF7F2] shadow-[0_40px_80px_-20px_rgba(45,41,38,0.2)] rounded-sm p-1.5 relative overflow-hidden">
             <div className="border-[1.5px] border-dashed border-dorado/40 p-8 relative h-full">
               
-              {/* METADATOS LIMPIOS Y ELEGANTES */}
               <div className="flex justify-between items-center mb-8 text-[9px] font-mono tracking-[0.2em] text-marron-oscuro/60 uppercase">
                 <span>{dict.step}</span>
                 <span className={`font-bold ${selectedPrenda ? "text-[#4A5D23]" : "text-dorado"}`}>
@@ -94,8 +93,9 @@ export default function Calculadora({ dict }) {
                 onClick={() => currentStep === 1 && setIsOpen(!isOpen)}
                 className="w-full text-left flex justify-between items-center outline-none border-b border-marron-oscuro/20 pb-3 hover:border-dorado transition-colors group"
               >
+                {/* LECTURA DINÁMICA: Si hay prenda, imprime su 'label' */}
                 <span className={`text-sm font-light uppercase tracking-widest ${selectedPrenda ? 'text-marron-oscuro font-medium' : 'text-marron-oscuro/40'}`}>
-                  {selectedPrenda ? selectedPrenda : dict.placeholder}
+                  {selectedPrenda ? selectedPrenda.label : dict.placeholder}
                 </span>
                 <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="text-[10px] text-dorado group-hover:text-marron-oscuro transition-colors">
                   ▼
@@ -106,17 +106,17 @@ export default function Calculadora({ dict }) {
                 {isOpen && (
                   <motion.div variants={menuVariants} initial="hidden" animate="visible" exit="exit" className="overflow-hidden relative z-10 mt-4">
                     <div className="flex flex-col gap-1">
-                      {prendasArray.map((prenda) => (
+                      {/* MAPEADO DINÁMICO: Leemos dict.items desde el JSON */}
+                      {dict.items.map((prenda) => (
                         <motion.button 
-                          key={prenda} 
+                          key={prenda.id} 
                           variants={tagVariants} 
                           onClick={() => handleSelect(prenda)} 
-                          // DISEÑO SUTIL: Micro-indicador dorado
                           className="group relative flex items-center w-full text-left px-2 py-3 outline-none"
                         >
                           <span className="absolute left-0 w-1 h-1 rounded-full bg-dorado opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                           <span className="text-sm font-serif italic text-marron-oscuro/70 group-hover:text-dorado group-hover:translate-x-3 transition-all duration-300">
-                            {prenda}
+                            {prenda.label}
                           </span>
                         </motion.button>
                       ))}
@@ -134,16 +134,9 @@ export default function Calculadora({ dict }) {
         {/* ======================================= */}
         <AnimatePresence>
           {currentStep === 2 && (
-            <motion.div 
-              variants={step2Variants} 
-              initial="hidden" 
-              animate="visible" 
-              exit="exit" 
-              className="absolute w-full"
-            >
+            <motion.div variants={step2Variants} initial="hidden" animate="visible" exit="exit" className="absolute w-full">
               <div className="bg-[#2D2926] shadow-2xl rounded-sm p-1.5 relative text-crema">
                 
-                {/* Hilo SVG de perforación (Conecta tarjeta 1 con tarjeta 2) */}
                 <svg className="absolute left-10 -top-16 w-4 h-16 pointer-events-none z-20 overflow-visible" viewBox="0 0 10 100" preserveAspectRatio="none">
                   <motion.path d="M 5 0 L 5 100" stroke="#C5A059" strokeWidth="2" strokeDasharray="4 6" fill="transparent" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.2 }} style={{ filter: "drop-shadow(0px 0px 3px rgba(197,160,89,0.8))" }} />
                   <circle cx="5" cy="100" r="3" fill="#C5A059" />
@@ -151,10 +144,10 @@ export default function Calculadora({ dict }) {
 
                 <div className="border-[1.5px] border-dashed border-dorado/30 p-8">
                   
-                  {/* METADATOS TRASEROS LIMPIOS */}
                   <div className="flex justify-between items-center mb-8 text-[9px] font-mono tracking-[0.2em] text-crema/50 uppercase">
                     <span>[ Paso 02 ]</span>
-                    <span className="text-crema">{selectedPrenda}</span>
+                    {/* OPTIONAL CHAINING: Protegemos contra nulos usando '?.' */}
+                    <span className="text-crema">{selectedPrenda?.label}</span>
                   </div>
 
                   <h2 className="text-crema text-3xl font-serif leading-none tracking-tight mb-8">

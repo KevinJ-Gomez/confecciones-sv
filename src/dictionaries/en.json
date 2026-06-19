@@ -9,7 +9,15 @@
     "step": "[Step 01]",
     "timeLabel": "Sys.Time:",
     "awaiting": "AWAITING",
-    "ok": "OK"
+    "ok": "OK",
+    "items": [
+      { "id": "pantalon", "label": "Trousers / Jeans", "basePrice": 10 },
+      { "id": "camisa", "label": "Shirt / Blouse", "basePrice": 12 },
+      { "id": "vestido", "label": "Dress", "basePrice": 20 },
+      { "id": "chaqueta", "label": "Jacket / Blazer", "basePrice": 15 },
+      { "id": "falda", "label": "Skirt", "basePrice": 10 },
+      { "id": "abrigo", "label": "Coat", "basePrice": 20 }
+    ]
 
   }
 }
