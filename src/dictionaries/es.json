@@ -5,6 +5,10 @@
   },
   "calculator": {
     "question": "¿Qué prenda vamos a trabajar?",
-    "placeholder": "Selecciona tu prenda..."
+    "placeholder": "Selecciona tu prenda",
+    "step": "[ Paso 01]",
+    "timeLabel": "Hora.Sis:",
+    "awaiting": "ESPERANDO",
+    "ok": "OK"
   }
 }

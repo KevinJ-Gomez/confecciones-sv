@@ -5,6 +5,11 @@
   },
   "calculator": {
     "question": "Which garment are we working on?",
-    "placeholder": "Select your garment..."
+    "placeholder": "Select your garment",
+    "step": "[Step 01]",
+    "timeLabel": "Sys.Time:",
+    "awaiting": "AWAITING",
+    "ok": "OK"
+
   }
 }
