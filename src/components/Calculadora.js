@@ -144,12 +144,12 @@ export default function Calculadora({ dict }) {
   const prendasToRender = dict?.items?.length > 0 ? dict.items : defaultPrendas;
   const total = (selectedService?.price || 0);
   const heightClass = isOpen
-    ? "min-h-[570px] md:min-h-[590px]"
+    ? "min-h-[590px] md:min-h-[620px]"
     : currentStep === 1
-      ? "min-h-[300px] md:min-h-[340px]"
+      ? "min-h-[330px] md:min-h-[370px]"
       : currentStep === 2
-        ? "min-h-[520px] md:min-h-[540px]"
-        : "min-h-[460px] md:min-h-[500px]";
+        ? "min-h-[550px] md:min-h-[580px]"
+        : "min-h-[500px] md:min-h-[540px]";
 
   // =========================================================================
   // ⚙️ MOTOR DE MENSAJES (Tokenización i18n)
@@ -174,32 +174,44 @@ export default function Calculadora({ dict }) {
     >
       <motion.div
         style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: "preserve-3d" }}
-        className="relative z-10 flex w-full max-w-md items-start justify-center"
+        className="relative z-10 flex w-full max-w-lg items-start justify-center"
       >
         {/* ======================================= */}
         {/* PASO 1 */}
         {/* ======================================= */}
         <motion.div variants={step1Variants} animate={currentStep === 1 ? "active" : "background"} className="absolute top-0 w-full">
-          <div className="relative overflow-hidden rounded-sm border border-white/5 bg-[#171412]/80 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl md:p-9">
+          <div className="relative overflow-hidden rounded-sm border border-white/10 bg-[#171412]/90 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl md:p-10">
             
             <div className="mb-6 flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A]">
+              <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#E2C581]">
                 {dict?.step || "[ PASO 01 ]"}
               </span>
-              <span className={`font-mono text-[9px] font-bold tracking-widest uppercase ${selectedPrenda ? "text-[#D8B66A]" : "text-[#F8EFE2]/30"}`}>
+              <span className={`font-sans text-[10px] font-semibold uppercase tracking-[0.1em] ${selectedPrenda ? "text-[#E2C581]" : "text-[#F8EFE2]/55"}`}>
                 {selectedPrenda ? (dict?.ok || "OK") : (dict?.awaiting || "ESPERANDO")}
               </span>
             </div>
 
-            <h2 className="mb-7 font-serif text-3xl leading-[1.1] tracking-tighter text-[#FFF5E8] md:text-4xl">
+            <h2 className="mb-8 font-serif text-3xl leading-[1.12] tracking-tight text-[#FFF5E8] md:text-[2.55rem]">
               {dict?.question || "¿Qué prenda vamos a trabajar?"}
             </h2>
 
-            <button onClick={() => currentStep === 1 && setIsOpen(!isOpen)} className="group flex w-full items-center justify-between border-b border-white/10 pb-4 text-left outline-none transition-colors hover:border-[#D8B66A]">
-              <span className={`text-xs md:text-sm font-mono uppercase tracking-[0.2em] ${selectedPrenda ? "font-semibold text-[#D8B66A]" : "font-light text-[#F8EFE2]/40"}`}>
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              onClick={() => currentStep === 1 && setIsOpen(!isOpen)}
+              className="group flex w-full items-center justify-between gap-4 border-b border-white/20 pb-4 text-left outline-none transition-colors hover:border-[#D8B66A] focus-visible:border-[#D8B66A]"
+            >
+              <span className={`font-sans text-base tracking-[0.01em] md:text-lg ${selectedPrenda ? "font-semibold text-[#E2C581]" : "font-normal text-[#F8EFE2]/75"}`}>
                 {selectedPrenda ? selectedPrenda.label : (dict?.placeholder || "Selecciona tu prenda")}
               </span>
-              <motion.span animate={{ rotate: isOpen ? 180 : 0 }} className="text-xs text-[#D8B66A] transition-colors group-hover:text-[#FFF5E8]">▼</motion.span>
+              <motion.span
+                aria-hidden="true"
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                className="shrink-0 text-sm text-[#D8B66A] transition-colors group-hover:text-[#FFF5E8]"
+              >
+                ▼
+              </motion.span>
             </button>
 
             <AnimatePresence>
@@ -209,7 +221,7 @@ export default function Calculadora({ dict }) {
                     {prendasToRender.map((prenda) => (
                       <motion.button key={prenda.id} variants={tagVariants} onClick={() => handleSelectPrenda(prenda)} className="group relative flex w-full items-center px-3 py-3 text-left outline-none bg-white/5 hover:bg-white/10 transition-colors rounded-sm flex-shrink-0">
                         <span className="absolute left-0 h-full w-1 rounded-l-sm bg-[#D8B66A] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        <span className="font-serif text-lg md:text-xl text-[#F8EFE2]/70 transition-all duration-300 group-hover:translate-x-3 group-hover:text-[#D8B66A]">
+                        <span className="font-sans text-base font-medium text-[#F8EFE2]/85 transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#E2C581] md:text-lg">
                           {prenda.label}
                         </span>
                       </motion.button>
@@ -227,35 +239,35 @@ export default function Calculadora({ dict }) {
         <AnimatePresence>
           {currentStep === 2 && (
             <motion.div variants={step2Variants} initial="hidden" animate="visible" exit="exit" className="absolute top-0 w-full">
-              <div className="relative rounded-sm border border-white/5 bg-[#171412]/90 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl md:p-9">
+              <div className="relative rounded-sm border border-white/10 bg-[#171412]/95 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl md:p-10">
                 
                 <div className="mb-5 flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A]">
+                  <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#E2C581]">
                     {dict?.step2 || "[ PASO 02 ]"}
                   </span>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-[#F8EFE2]/50">
+                  <span className="font-sans text-[11px] font-medium text-[#F8EFE2]/70">
                     {selectedPrenda?.label}
                   </span>
                 </div>
 
-                <h2 className="mb-6 font-serif text-3xl leading-[1.1] tracking-tighter text-[#FFF5E8] md:text-4xl">
+                <h2 className="mb-7 font-serif text-3xl leading-[1.12] tracking-tight text-[#FFF5E8] md:text-[2.55rem]">
                   {dict?.service_question || "¿Qué servicio aplicamos?"}
                 </h2>
 
                 <div className="mb-6 flex flex-col gap-2">
                   {selectedPrenda?.services?.map((servicio, index) => (
-                    <motion.button key={servicio.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + index * 0.1 }} onClick={() => handleSelectService(servicio)} className={`group relative flex w-full items-center justify-between border px-3 py-3 text-left outline-none transition-colors rounded-sm ${selectedService?.id === servicio.id ? "border-[#D8B66A]/20 bg-[#D8B66A]/10" : "border-transparent bg-white/5 hover:bg-white/10"}`}>
-                      <div className="flex items-center">
+                    <motion.button key={servicio.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + index * 0.1 }} onClick={() => handleSelectService(servicio)} className={`group relative flex w-full items-center justify-between gap-3 rounded-sm border px-4 py-3.5 text-left outline-none transition-colors ${selectedService?.id === servicio.id ? "border-[#D8B66A]/30 bg-[#D8B66A]/10" : "border-white/5 bg-white/5 hover:bg-white/10"}`}>
+                      <div className="flex min-w-0 items-center">
                         <span className={`absolute left-0 h-full w-1 rounded-l-sm bg-[#D8B66A] transition-opacity duration-300 ${selectedService?.id === servicio.id ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-                        <span className={`font-sans text-[15px] md:text-base font-light tracking-wide transition-all duration-300 ${selectedService?.id === servicio.id ? "translate-x-3 text-[#D8B66A]" : "text-[#F8EFE2]/80 group-hover:translate-x-3 group-hover:text-[#D8B66A]"}`}>
+                        <span className={`font-sans text-base font-medium leading-snug transition-all duration-300 md:text-[17px] ${selectedService?.id === servicio.id ? "translate-x-2 text-[#E2C581]" : "text-[#F8EFE2]/90 group-hover:translate-x-2 group-hover:text-[#E2C581]"}`}>
                           {servicio.label}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 bg-[#D8B66A]/5 px-3 py-1.5 rounded-sm">
-                        <span className="font-mono text-[9px] uppercase tracking-widest text-[#D8B66A]/70">
+                      <div className="flex shrink-0 items-center gap-2 rounded-sm bg-[#D8B66A]/10 px-3 py-2">
+                        <span className="font-sans text-[10px] font-semibold text-[#E2C581]/80">
                           {dict?.from || "Desde"}
                         </span>
-                        <span className="font-sans text-sm font-semibold text-[#D8B66A]">
+                        <span className="font-sans text-base font-bold text-[#E2C581]">
                           {servicio.price}€
                         </span>
                       </div>
@@ -263,8 +275,8 @@ export default function Calculadora({ dict }) {
                   ))}
                 </div>
 
-                <button className="w-full text-left font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white/30 transition-colors hover:text-[#FFF5E8]" onClick={() => { setCurrentStep(1); setSelectedService(null); }}>
-                  ← {dict?.back || "Volver"}
+                <button className="w-full text-left font-sans text-sm font-semibold text-white/60 transition-colors hover:text-[#FFF5E8]" onClick={() => { setCurrentStep(1); setSelectedService(null); }}>
+                  {dict?.back || "Volver"}
                 </button>
               </div>
             </motion.div>
@@ -277,10 +289,10 @@ export default function Calculadora({ dict }) {
         <AnimatePresence>
           {currentStep === 3 && (
             <motion.div variants={step3Variants} initial="hidden" animate="visible" exit="exit" className="absolute top-0 w-full">
-              <div className="relative rounded-sm border border-white/5 bg-[#171412]/95 p-7 text-left text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.8)] backdrop-blur-xl md:p-9">
+              <div className="relative rounded-sm border border-white/10 bg-[#171412]/95 p-7 text-left text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.8)] backdrop-blur-xl md:p-10">
                 
                 <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#D8B66A]">
+                  <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-[#E2C581]">
                     {dict?.estimate_title || "PRESUPUESTO ESTIMADO"}
                   </span>
                   
@@ -289,19 +301,19 @@ export default function Calculadora({ dict }) {
 
                 <div className="mb-6 flex flex-col gap-4">
                   <div>
-                    <span className="block text-[9px] font-mono uppercase tracking-[0.2em] text-white/30 mb-1">Prenda</span>
-                    <span className="text-sm font-sans font-light tracking-wide text-[#F8EFE2]">{selectedPrenda?.label}</span>
+                    <span className="mb-1 block font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-white/55">{dict?.garment_label || "Prenda"}</span>
+                    <span className="font-sans text-base font-medium text-[#F8EFE2]">{selectedPrenda?.label}</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] font-mono uppercase tracking-[0.2em] text-white/30 mb-1">Servicio</span>
-                    <span className="text-base font-sans font-medium tracking-wide text-[#D8B66A]">{selectedService?.label}</span>
+                    <span className="mb-1 block font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-white/55">{dict?.service_label || "Servicio"}</span>
+                    <span className="font-sans text-lg font-semibold text-[#E2C581]">{selectedService?.label}</span>
                   </div>
                 </div>
 
                 <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-[#D8B66A]/20 to-transparent" />
 
                 <div className="mb-10 flex items-end justify-between">
-                  <span className="font-mono text-xs uppercase tracking-widest text-white/40">
+                  <span className="font-sans text-sm font-semibold text-white/65">
                     {dict?.total_base || "Total Base"}
                   </span>
                   <h2 className="font-serif text-4xl md:text-5xl leading-none tracking-tighter text-[#FFF5E8]">
@@ -309,17 +321,17 @@ export default function Calculadora({ dict }) {
                   </h2>
                 </div>
 
-                <small className="mb-10 block font-sans text-[11px] font-light leading-relaxed text-white/40">
+                <small className="mb-10 block font-sans text-xs font-normal leading-relaxed text-white/60">
                   {dict?.disclaimer || "* El precio es orientativo. El coste final depende del tejido, la dificultad y el acabado."}
                 </small>
 
                 <div className="flex flex-col gap-5">
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 border border-[#D8B66A]/40 bg-transparent py-4 text-xs font-mono font-semibold uppercase tracking-[0.2em] text-[#D8B66A] transition-colors hover:bg-[#D8B66A] hover:text-[#171412]">
-                    {dict?.whatsapp || "Solicitar por WhatsApp"} →
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center border border-[#D8B66A]/60 bg-[#D8B66A]/5 px-4 py-4 font-sans text-sm font-semibold text-[#E2C581] transition-colors hover:bg-[#D8B66A] hover:text-[#171412]">
+                    {dict?.whatsapp || "Solicitar por WhatsApp"}
                   </a>
                   
-                  <button className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30 transition-colors hover:text-[#F8EFE2]" onClick={() => { setCurrentStep(1); setSelectedPrenda(null); setSelectedService(null); setIsOpen(false); }}>
-                    {dict?.restart || "Empezar de nuevo"} ↺
+                  <button className="font-sans text-xs font-semibold text-white/55 transition-colors hover:text-[#F8EFE2]" onClick={() => { setCurrentStep(1); setSelectedPrenda(null); setSelectedService(null); setIsOpen(false); }}>
+                    {dict?.restart || "Empezar de nuevo"}
                   </button>
                 </div>
 

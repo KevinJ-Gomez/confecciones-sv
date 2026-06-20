@@ -37,21 +37,40 @@ const FlagES = () => (
 
 export default function Header({ lang = 'es' }) {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // El punto de lectura queda justo bajo el header. Recorremos las secciones
+      // en el mismo orden visual en el que aparecen en la página.
+      const sectionIds = ['inicio', 'contacto', 'servicios', 'artesania'];
+      const readingLine = window.scrollY + 140;
+      let currentSection = 'inicio';
+
+      sectionIds.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+        const sectionTop = section
+          ? section.getBoundingClientRect().top + window.scrollY
+          : Number.POSITIVE_INFINITY;
+        if (sectionTop <= readingLine) currentSection = sectionId;
+      });
+
+      setActiveSection(currentSection);
     };
-    
-    window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
     { id: 'inicio', label: lang === 'es' ? 'Inicio' : 'Home' },
-    { id: 'servicios', label: lang === 'es' ? 'Servicios' : 'Services' },
+    { id: 'contacto', label: lang === 'es' ? 'Contacto' : 'Contact' },
     { id: 'presupuesto', label: lang === 'es' ? 'Presupuesto' : 'Estimate' },
-    { id: 'contacto', label: lang === 'es' ? 'Contacto' : 'Contact' }, 
+    { id: 'servicios', label: lang === 'es' ? 'Servicios' : 'Services' },
+    { id: 'artesania', label: lang === 'es' ? 'Taller' : 'Atelier' },
   ];
 
   const handleScrollClick = (e, targetId) => {
@@ -75,11 +94,11 @@ export default function Header({ lang = 'es' }) {
     <header 
       className={`w-full fixed top-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-xl border-b border-[#2D2926]/5 shadow-sm py-0' 
+          ? 'bg-white/95 backdrop-blur-xl border-b border-[#C5A059]/15 shadow-[0_12px_35px_rgba(45,41,38,0.16)] py-0'
           : 'bg-white/80 backdrop-blur-md border-b border-transparent py-2'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 h-18 flex items-center justify-between md:px-6">
+      <div className="mx-auto flex h-18 max-w-[1500px] items-center justify-between px-5 md:px-6">
         
         <div className="flex items-center gap-6 md:gap-10">
           <Link href={`/${lang}`} onClick={(e) => handleScrollClick(e, 'inicio')} className="hover:opacity-80 transition-opacity flex items-center h-full outline-none">
@@ -92,25 +111,35 @@ export default function Header({ lang = 'es' }) {
             />
           </Link>
 
-          <div className="hidden md:block w-px h-7 bg-[#2D2926]/20"></div>
+          <div className="hidden h-7 w-px bg-[#2D2926]/20 lg:block"></div>
 
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button 
-                key={link.id} 
-                onClick={(e) => handleScrollClick(e, link.id)}
-                className="font-sans text-xs font-semibold uppercase tracking-[0.07em] text-[#2D2926] transition-colors outline-none hover:text-[#C5A059] md:text-sm"
-              >
-                {link.label}
-              </button>
-            ))}
+          <nav className="hidden items-center gap-2 lg:flex lg:gap-3">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id
+                || (activeSection === 'servicios' && link.id === 'presupuesto');
+
+              return (
+                <button
+                  key={link.id}
+                  onClick={(e) => handleScrollClick(e, link.id)}
+                  aria-current={isActive ? 'location' : undefined}
+                  className={`rounded-sm px-3 py-2 font-sans text-xs font-semibold uppercase tracking-[0.06em] outline-none transition-all duration-300 lg:text-sm ${
+                    isActive
+                      ? 'bg-[#C5A059]/15 text-[#8A692D] shadow-[inset_0_-2px_0_rgba(197,160,89,0.65),0_5px_16px_rgba(197,160,89,0.10)]'
+                      : 'text-[#2D2926] hover:bg-[#C5A059]/8 hover:text-[#9A762F]'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </nav>
         </div>
 
         <div className="flex items-center justify-end gap-2">
           <button
             onClick={(event) => handleScrollClick(event, 'contacto')}
-            className="inline-flex items-center border border-[#C5A059]/50 px-2.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.06em] text-[#2D2926] transition-colors hover:bg-[#C5A059] md:hidden"
+            className="inline-flex items-center border border-[#C5A059]/50 px-2.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.06em] text-[#2D2926] transition-colors hover:bg-[#C5A059] lg:hidden"
           >
             {lang === 'es' ? 'Contacto' : 'Contact'}
           </button>

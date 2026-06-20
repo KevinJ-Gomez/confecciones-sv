@@ -44,13 +44,17 @@ const servicios = [
 ];
 
 const fotosTaller = [
-  { id: 1, src: "/assets/client-raw/máquina.jpg", alt: "Costura detalle 1", style: "md:h-[400px] md:mt-0" },
-  { id: 2, src: "/assets/client-raw/tijeras.jpg", alt: "Máquina de coser", style: "md:h-[320px] md:mt-16" },
-  { id: 3, src: "/assets/client-raw/hilos.jpg", alt: "Hilos y texturas", style: "md:h-[450px] md:mt-32 md:-ml-8 md:z-10 shadow-2xl" },
-  { id: 4, src: "/assets/client-raw/tela.jpg", alt: "Toma de medidas", style: "md:h-[350px] md:-mt-12 md:-mr-6 md:z-10 shadow-2xl" },
-  { id: 5, src: "/assets/client-raw/regla.jpg", alt: "Patrones", style: "md:h-[450px] md:-mt-4" },
-  { id: 6, src: "/assets/client-raw/vestido.jpg", alt: "Acabado final", style: "md:h-[300px] md:-mt-20 md:-ml-4 md:z-10 shadow-2xl" },
+  { id: 1, src: "/assets/client-raw/máquina.jpg", alt: "Costura detalle 1", style: "h-48 sm:h-56 lg:col-start-1 lg:row-start-1 lg:row-span-7 lg:h-auto" },
+  { id: 2, src: "/assets/client-raw/tijeras.jpg", alt: "Máquina de coser", style: "h-36 sm:h-44 lg:col-start-2 lg:row-start-1 lg:row-span-5 lg:h-auto" },
+  { id: 3, src: "/assets/client-raw/hilos.jpg", alt: "Hilos y texturas", style: "h-56 sm:h-64 lg:col-start-3 lg:row-start-1 lg:row-span-8 lg:h-auto" },
+  { id: 4, src: "/assets/client-raw/tela.jpg", alt: "Toma de medidas", style: "h-40 sm:h-48 lg:col-start-1 lg:row-start-8 lg:row-span-5 lg:h-auto" },
+  { id: 5, src: "/assets/client-raw/regla.jpg", alt: "Patrones", style: "h-52 sm:h-60 lg:col-start-2 lg:row-start-6 lg:row-span-7 lg:h-auto" },
+  { id: 6, src: "/assets/client-raw/vestido.jpg", alt: "Acabado final", style: "h-36 sm:h-44 lg:col-start-3 lg:row-start-9 lg:row-span-4 lg:h-auto" },
 ];
+
+// FUTURO: cambia a `false` para retirar por completo la reserva de opiniones.
+// La galería recuperará automáticamente todo el ancho sin tocar su marcado.
+const MOSTRAR_ESPACIO_OPINIONES = true;
 
 function MonogramaSVG({ size = "medium", className = "" }) {
   const sizeMap = {
@@ -72,7 +76,7 @@ export default function Home({ params }) {
     <>
       <Header lang={lang} />
 
-      <main id="inicio" className="relative min-h-screen overflow-hidden bg-[#171412] px-4 pb-6 pt-18 text-[#F8EFE2] md:px-8"
+      <main id="inicio" className="relative min-h-screen overflow-hidden bg-[#171412] px-4 pb-6 pt-18 text-[#F8EFE2] md:px-6"
         style={{
           background: "radial-gradient(circle at 50% -10%, #3A2E20 0%, #171412 60%)",
           perspective: "1200px",
@@ -98,16 +102,20 @@ export default function Home({ params }) {
         </div>
 
         {/* HERO: TEXTO MINIMALISTA Y EDITORIAL */}
-        <section className="relative z-10 mx-auto mb-8 flex min-h-[42vh] w-full max-w-7xl flex-col justify-center pt-[5vh]">
+        <section className="relative z-10 mx-auto mb-8 flex min-h-[42vh] w-full max-w-[1500px] flex-col justify-center pt-[5vh]">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: "easeOut" }} className="w-full max-w-3xl">
-            <span className="mb-4 block max-w-2xl font-sans text-sm font-medium leading-relaxed tracking-[0.03em] text-[#E2C581] drop-shadow-md md:text-base">
-              {t.page.subtitle}
+            <span className="mb-4 block font-sans text-xs font-semibold uppercase tracking-[0.24em] text-[#D8B66A] md:text-sm">
+              {t.page.brand}
             </span>
 
-            <h1 className="font-serif text-5xl leading-[0.95] tracking-tighter drop-shadow-2xl md:text-6xl lg:text-[6rem]">
-              <span className="text-[#FFF5E8]">{t.page.title.split(' ')[0]}</span><br />
-              <span className="text-[#D8B66A]">{t.page.title.split(' ')[1]}</span>
+            <h1 className="font-serif text-5xl leading-[0.9] tracking-tighter drop-shadow-2xl md:text-7xl lg:text-[6.5rem]">
+              <span className="text-[#FFF5E8]">{t.page.title_line_1}</span><br />
+              <span className="italic text-[#D8B66A]">{t.page.title_line_2}</span>
             </h1>
+
+            <p className="mt-5 max-w-2xl font-sans text-sm font-medium leading-relaxed tracking-[0.03em] text-[#F8EFE2]/70 drop-shadow-md md:text-base">
+              {t.page.subtitle}
+            </p>
 
             <div className="mt-7 flex flex-col items-start gap-2">
                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
@@ -115,8 +123,8 @@ export default function Home({ params }) {
                    {t.page.cta_contacto}
                  </motion.a>
 
-                 <motion.a href="#presupuesto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} whileHover={{ x: 5 }} className="flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.08em] text-[#D8B66A] transition-colors hover:text-white">
-                   {t.page.cta_presupuesto} <span className="text-lg leading-none">→</span>
+                 <motion.a href="#presupuesto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} whileHover={{ y: -2 }} className="inline-flex items-center justify-center border border-[#D8B66A]/70 bg-[#D8B66A]/10 px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F4D797] shadow-[0_8px_30px_rgba(216,182,106,0.08)] transition-colors hover:border-[#FFF5E8] hover:bg-[#FFF5E8] hover:text-[#171412]">
+                   {t.page.cta_presupuesto}
                  </motion.a>
                </div>
                
@@ -130,93 +138,107 @@ export default function Home({ params }) {
         {/* CONTACTO: ACCIÓN PRINCIPAL, VISIBLE INMEDIATAMENTE TRAS EL HERO */}
         <ContactSection dict={t.contacto_section} lang={lang} />
 
-        {/* SERVICIOS: DISEÑO CON IMÁGENES INTEGRADAS */}
-        <section id="servicios" className="relative z-20 mx-auto mb-12 w-full max-w-7xl px-4 md:mb-32">
-          <div className="mb-8 flex flex-col items-start justify-between gap-3 md:mb-20 md:flex-row md:items-end md:gap-6">
+        {/* PRESUPUESTO Y SERVICIOS: CALCULADORA A LA IZQUIERDA, SERVICIOS A LA DERECHA */}
+        <section id="servicios" className="relative z-20 mx-auto mb-14 w-full max-w-[1500px] scroll-mt-24 px-2 md:mb-24 md:px-0">
+          <div className="grid items-start gap-14 lg:grid-cols-[minmax(420px,0.78fr)_minmax(0,1.22fr)] lg:gap-14 xl:gap-20">
+            <section id="presupuesto" className="relative flex w-full scroll-mt-24 flex-col items-center lg:pt-1">
+              <div className="mb-4 w-full text-left">
+                <h2 className="font-serif text-3xl text-[#FFF5E8] md:text-4xl">{t.presupuesto_section.title}</h2>
+                <div className="mt-4 h-px w-16 bg-[#D8B66A]" />
+              </div>
+              <Calculadora dict={t.calculator} />
+              <div className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-[45%]" aria-hidden="true">
+                <MonogramaSVG size="calculatorWatermark" />
+              </div>
+            </section>
+
             <div>
-              <h2 className="mb-4 font-serif text-3xl text-[#FFF5E8] md:text-5xl">{t.servicios_section.title}</h2>
-              <div className="h-px w-16 bg-[#D8B66A]" />
+              <div className="mb-8 md:mb-12">
+                <h2 className="mb-4 font-serif text-3xl text-[#FFF5E8] md:text-5xl">{t.servicios_section.title}</h2>
+                <div className="h-px w-16 bg-[#D8B66A]" />
+              </div>
+
+              <div className="grid touch-pan-y grid-cols-2 gap-x-3 gap-y-8 md:gap-x-8 md:gap-y-12">
+                {servicios.map((servicio, index) => (
+                  <motion.article
+                    key={servicio.titulo}
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: index * 0.08 }}
+                    whileHover={{ y: -8 }}
+                    whileTap={{ scale: 1.04 }}
+                    className="group relative z-0 flex touch-pan-y cursor-default flex-col items-start active:z-20"
+                  >
+                    <div className="relative mb-4 h-28 w-full overflow-hidden rounded-sm border border-white/5 md:mb-5 md:h-40">
+                      <img src={servicio.img} alt={t.servicios_section.items[index].titulo} className="h-full w-full object-cover opacity-60 mix-blend-luminosity transition-all duration-700 group-hover:scale-105 group-hover:opacity-90 group-hover:mix-blend-normal group-active:scale-105 group-active:opacity-90 group-active:mix-blend-normal" />
+                      <div className="absolute inset-0 bg-[#C8A45D]/10 mix-blend-overlay" />
+                    </div>
+
+                    <span className="pointer-events-none absolute -left-1 top-20 z-10 font-serif text-[4rem] leading-none text-[#D8B66A]/10 transition-all duration-500 group-hover:-top-2 group-hover:text-[#D8B66A]/30 group-active:-top-2 group-active:text-[#D8B66A]/30 md:top-28 md:text-[6rem]">
+                      {servicio.numero}
+                    </span>
+
+                    <div className="relative z-20 w-full">
+                      <div className="mb-4 h-px w-8 bg-[#D8B66A]/30 transition-all duration-500 group-hover:w-full group-hover:bg-[#D8B66A] group-active:w-full group-active:bg-[#D8B66A]" />
+                      <h3 className="mb-2 font-serif text-lg leading-tight text-[#FFF5E8] transition-colors group-hover:text-[#D8B66A] group-active:text-[#D8B66A] md:text-2xl">
+                        {t.servicios_section.items[index].titulo}
+                      </h3>
+                      <p className="max-w-sm text-xs font-light leading-relaxed text-white/50 md:text-sm">{t.servicios_section.items[index].texto}</p>
+                      <p className={`mt-4 font-sans text-[9px] font-medium uppercase tracking-[0.06em] md:text-[10px] ${servicio.personalizado ? "text-[#D8B66A]" : "text-white/35"}`}>{t.servicios_section.items[index].extra}</p>
+                      {servicio.personalizado && (
+                        <a href="#contacto" className="mt-5 inline-flex font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#D8B66A] transition-colors hover:text-white">
+                          {t.servicios_section.items[index].cta || "Consultar precio"}
+                        </a>
+                      )}
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
             </div>
-            <span className="font-sans text-[10px] font-medium tracking-[0.04em] text-white/45 md:hidden">{t.servicios_section.swipe_hint}</span>
-          </div>
 
-          <div className="grid touch-pan-x auto-cols-[82%] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-5 [scrollbar-width:none] snap-x snap-mandatory [&::-webkit-scrollbar]:hidden md:grid-flow-row md:grid-cols-4 md:auto-cols-auto md:gap-10 md:overflow-visible md:pb-0">
-            {servicios.map((servicio, index) => (
-              <motion.article 
-                key={servicio.titulo} 
-                initial={{ opacity: 0, y: 35 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true, amount: 0.2 }} 
-                transition={{ duration: 0.7, delay: index * 0.08 }} 
-                whileHover={{ y: -8 }} 
-                className={`group relative flex snap-start cursor-default flex-col items-start ${index === 1 || index === 3 ? "md:mt-12" : ""}`}
-              >
-                <div className="w-full h-48 mb-6 overflow-hidden rounded-sm relative border border-white/5">
-                  <img src={servicio.img} alt={t.servicios_section.items[index].titulo} className="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-90 group-hover:mix-blend-normal transition-all duration-700" />
-                  <div className="absolute inset-0 bg-[#C8A45D]/10 mix-blend-overlay"></div>
-                </div>
-
-                <span className="pointer-events-none absolute -left-4 top-36 font-serif text-[7rem] leading-none text-[#D8B66A]/10 transition-all duration-500 group-hover:-top-2 group-hover:text-[#D8B66A]/30 z-10">
-                  {servicio.numero}
-                </span>
-
-                <div className="relative z-20 w-full">
-                  <div className="mb-6 h-px w-8 bg-[#D8B66A]/30 transition-all duration-500 group-hover:w-full group-hover:bg-[#D8B66A]" />
-                  
-                  <h3 className="mb-4 font-serif text-2xl text-[#FFF5E8] transition-colors duration-300 group-hover:text-[#D8B66A]">
-                    {t.servicios_section.items[index].titulo}
-                  </h3>
-                  
-                  <p className="max-w-xs text-sm leading-relaxed text-white/50 font-light">{t.servicios_section.items[index].texto}</p>
-                  <p className={`mt-6 font-sans text-[10px] font-medium uppercase tracking-[0.08em] ${servicio.personalizado ? "text-[#D8B66A]" : "text-white/35"}`}>{t.servicios_section.items[index].extra}</p>
-
-                  {servicio.personalizado && (
-                    <a href="#contacto" className="mt-6 inline-flex items-center gap-2 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#D8B66A] transition-colors hover:text-white">
-                      {t.servicios_section.items[index].cta || "Consultar precio"} <span className="text-sm leading-none">→</span>
-                    </a>
-                  )}
-                </div>
-              </motion.article>
-            ))}
           </div>
         </section>
 
-        {/* PRESUPUESTO: CALCULADORA COMPACTADA */}
-        <section id="presupuesto" className="relative z-10 mb-3 flex w-full scroll-mt-24 flex-col items-center pt-0 md:mb-10">
-          <div className="mb-1 flex flex-col items-center text-center">
-            <h2 className="font-serif text-3xl text-[#FFF5E8] md:text-4xl">{t.presupuesto_section.title}</h2>
+        {/* TALLER: GALERÍA EDITORIAL Y RESERVA PARA FUTURAS OPINIONES REALES */}
+        <section id="artesania" className="relative z-20 mx-auto w-full max-w-[1500px] scroll-mt-24 border-t border-white/5 px-2 pb-14 pt-10 md:pb-24 md:pt-14">
+          <div className="mb-8 flex items-end justify-between md:mb-14">
+            <h2 className="font-serif text-4xl text-[#FFF5E8] md:text-5xl">{t.taller_section.title}</h2>
+            <div className="mb-2 hidden h-px w-20 bg-[#D8B66A]/60 sm:block" />
           </div>
-          <Calculadora dict={t.calculator} />
-          <div className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-[58%]" aria-hidden="true">
-            <MonogramaSVG size="calculatorWatermark" />
-          </div>
-        </section>
 
-        {/* GALERÍA CINEMATOGRÁFICA "EL TALLER" (6 FOTOS) */}
-        <section id="artesania" className="relative z-20 mx-auto w-full max-w-7xl border-t border-white/5 px-4 pb-10 pt-6 md:pb-20 md:pt-10">
-           
-           <div className="mb-8 flex flex-col items-start md:mb-16 md:items-end md:text-right">
-              <span className="font-sans text-sm font-medium tracking-[0.03em] text-[#D8B66A]">{t.taller_section.subtitle}</span>
-              <h2 className="mt-4 font-serif text-4xl text-[#FFF5E8] md:text-5xl max-w-xl">{t.taller_section.title}</h2>
-              <span className="mt-3 font-sans text-[10px] font-medium tracking-[0.04em] text-white/45 md:hidden">{t.taller_section.swipe_hint}</span>
-           </div>
-
-           <div className="grid w-full touch-pan-x auto-cols-[78%] grid-flow-col gap-3 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:none] snap-x snap-mandatory [&::-webkit-scrollbar]:hidden md:grid-flow-row md:grid-cols-3 md:auto-cols-auto md:gap-6 md:overflow-visible md:pb-0">
+          <div className={`grid items-stretch gap-8 ${MOSTRAR_ESPACIO_OPINIONES ? "lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px]" : "grid-cols-1"}`}>
+            <div className="grid w-full touch-pan-y grid-cols-2 gap-3 md:grid-cols-3 md:gap-5 lg:h-[540px] lg:grid-rows-12 xl:h-[600px]">
               {fotosTaller.map((foto, index) => (
-                <motion.div 
+                <motion.div
                   key={foto.id}
-                  initial={{ opacity: 0, y: 50 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true, amount: 0.2 }} 
-                  transition={{ type: "spring", stiffness: 40, damping: 15, delay: index * 0.1 }} 
-                  className={`group relative h-56 w-full snap-start overflow-hidden rounded-sm border border-[#D8B66A]/10 ${foto.style}`}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ type: "spring", stiffness: 40, damping: 15, delay: index * 0.1 }}
+                  whileTap={{ scale: 1.06 }}
+                  className={`group relative z-0 w-full touch-pan-y overflow-hidden rounded-sm border border-[#D8B66A]/10 active:z-20 ${foto.style}`}
                 >
-                   <img src={foto.src} alt={foto.alt} className="w-full h-full object-cover opacity-60 mix-blend-luminosity transition-all duration-1000 group-hover:scale-105 group-hover:opacity-100 group-hover:mix-blend-normal" />
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#171412] via-transparent to-transparent opacity-80" />
-                   <div className="absolute inset-0 bg-[#C8A45D]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-overlay" />
+                  <img src={foto.src} alt={foto.alt} className="h-full w-full object-cover opacity-60 mix-blend-luminosity transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:mix-blend-normal group-active:scale-105 group-active:opacity-100 group-active:mix-blend-normal" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#171412] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-[#C8A45D]/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
                 </motion.div>
               ))}
-           </div>
+            </div>
+
+            {MOSTRAR_ESPACIO_OPINIONES && (
+              /*
+               * FUTURO: sustituir este contenido por reseñas verificadas de Facebook y
+               * fotografías autorizadas por sus propietarios. No copiar opiniones sin permiso.
+               * PARA ELIMINAR LA RESERVA: poner MOSTRAR_ESPACIO_OPINIONES en false.
+               * La galería pasará a ocupar todo el ancho automáticamente.
+               */
+              <aside className="hidden h-full border-l border-[#D8B66A]/30 bg-white/[0.015] px-6 py-7 lg:block" aria-label={t.taller_section.reviews_label}>
+                <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D8B66A]">{t.taller_section.reviews_eyebrow}</span>
+                <p className="mt-4 font-serif text-xl leading-snug text-[#FFF5E8]/70">{t.taller_section.reviews_placeholder}</p>
+              </aside>
+            )}
+          </div>
         </section>
 
         {/* END MARK & FIRMA DEL DESARROLLADOR */}
@@ -229,7 +251,7 @@ export default function Home({ params }) {
             <a className="hover:text-[#D8B66A]" href={`/${lang}/legal/cookies`}>{t.footer.cookies}</a>
           </nav>
 
-          <div className="flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 text-center font-sans text-[10px] uppercase tracking-[0.06em] text-white/35 sm:flex-row sm:px-8 sm:text-left">
+          <div className="flex w-full max-w-[1500px] flex-col items-center justify-between gap-3 px-4 text-center font-sans text-[9px] uppercase tracking-[0.04em] text-white/35 sm:flex-row sm:px-8 sm:text-left md:text-[10px] md:tracking-[0.06em]">
             <span>© {new Date().getFullYear()} {t.footer.rights}</span>
             
             <a 

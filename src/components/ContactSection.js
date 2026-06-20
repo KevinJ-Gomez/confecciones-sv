@@ -2,10 +2,9 @@ import ContactForm from "./ContactForm";
 
 export default function ContactSection({ dict, lang }) {
   return (
-    <section id="contacto" className="relative z-20 mx-auto mb-12 w-full max-w-7xl scroll-mt-24 border-y border-[#D8B66A]/15 bg-white/[0.02] px-4 py-10 shadow-[0_30px_80px_rgba(0,0,0,0.18)] md:mb-20 md:px-8 md:py-12">
+    <section id="contacto" className="relative z-20 mx-auto mb-12 w-full max-w-[1500px] scroll-mt-24 border-y border-[#D8B66A]/15 bg-white/[0.02] px-4 py-10 shadow-[0_30px_80px_rgba(0,0,0,0.18)] md:mb-20 md:px-8 md:py-12">
       <div className="grid gap-10 md:grid-cols-2 md:gap-12">
         <div className="order-2 md:order-1">
-          <span className="mb-4 block font-sans text-sm font-medium leading-relaxed tracking-[0.03em] text-white/55">{dict.subtitle}</span>
           <h2 className="mb-7 font-serif text-3xl leading-tight text-[#FFF5E8] md:text-4xl">{dict.title}</h2>
 
           <div className="grid gap-6 sm:grid-cols-2">
@@ -27,13 +26,13 @@ export default function ContactSection({ dict, lang }) {
               <div>
                 <h3 className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-white/40">{dict.envios_title}</h3>
                 <ul className="flex flex-col gap-2 text-sm text-white/60">
-                  {dict.envios.map((item) => <li key={item}><span className="text-[#D8B66A]">→</span> {item}</li>)}
+                  {dict.envios.map((item) => <li key={item}>{item}</li>)}
                 </ul>
               </div>
               <div>
                 <h3 className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-white/40">{dict.pagos_title}</h3>
                 <ul className="flex flex-col gap-2 text-sm text-white/60">
-                  {dict.pagos.map((item) => <li key={item}><span className="text-[#D8B66A]">→</span> {item}</li>)}
+                  {dict.pagos.map((item) => <li key={item}>{item}</li>)}
                 </ul>
               </div>
             </div>

@@ -1,7 +1,9 @@
 {
   "page": {
+    "brand": "CONFECCIONES SV",
     "subtitle": "Over 20 years of experience • Custom tailoring and alterations in Zaragoza",
-    "title": "HAUTE COUTURE",
+    "title_line_1": "HAUTE",
+    "title_line_2": "COUTURE",
     "description": "We care for each garment with precision, delicacy, and professional finishes. A sewing service designed to make your clothes fit you perfectly again.",
     "cta_presupuesto": "ESTIMATE PRICE*",
     "cta_contacto": "Contact us",
@@ -9,7 +11,6 @@
   },
   "servicios_section": {
     "title": "Services",
-    "swipe_hint": "Swipe to see more →",
     "items": [
       {
         "numero": "01",
@@ -44,15 +45,15 @@
     ]
   },
   "presupuesto_section": {
-    "title": "Estimate your tailoring"
+    "title": "Estimate price"
   },
   "taller_section": {
-    "subtitle": "Where precision becomes art.",
     "title": "The Atelier",
-    "swipe_hint": "Swipe to see more →"
+    "reviews_label": "Reserved space for genuine reviews",
+    "reviews_eyebrow": "Coming soon",
+    "reviews_placeholder": "Reviews and garments from real customers."
   },
   "contacto_section": {
-    "subtitle": "Let's talk about your garment.",
     "title": "Contact",
     "ubicacion_title": "Atelier & Location",
     "ciudad": "Zaragoza, Spain",
@@ -99,7 +100,7 @@
   },
   "footer": {
     "rights": "Confecciones SV",
-    "dev": "Designed and developed by Kevin Gómez",
+    "dev": "Designed by Kevin Gómez",
     "legal_nav_label": "Legal information",
     "legal_notice": "Legal notice",
     "privacy": "Privacy",
@@ -117,6 +118,8 @@
     "from": "From",
     "back": "Go Back",
     "estimate_title": "ESTIMATED BUDGET",
+    "garment_label": "Garment",
+    "service_label": "Service",
     "total_base": "Base Total",
     "disclaimer": "* Price is an estimate. Final cost depends on fabric, complexity, and finish.",
     "whatsapp": "Request via WhatsApp",

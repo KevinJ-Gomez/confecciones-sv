@@ -108,14 +108,14 @@ export default function ContactForm({ dict, lang = "es" }) {
           value="whatsapp"
           className="inline-flex items-center justify-center gap-2 bg-[#25D366] px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.07em] text-[#102418] transition-colors hover:bg-[#FFF5E8] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366]"
         >
-          {dict.send_whatsapp} <span aria-hidden="true">→</span>
+          {dict.send_whatsapp}
         </button>
         <button
           type="submit"
           value="email"
           className="inline-flex items-center justify-center gap-2 border border-[#D8B66A]/50 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.07em] text-[#D8B66A] transition-colors hover:border-[#FFF5E8] hover:text-[#FFF5E8] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D8B66A]"
         >
-          {dict.send_email} <span aria-hidden="true">→</span>
+          {dict.send_email}
         </button>
       </div>
 

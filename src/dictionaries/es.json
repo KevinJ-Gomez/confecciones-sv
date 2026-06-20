@@ -1,7 +1,9 @@
 {
   "page": {
+    "brand": "CONFECCIONES SV",
     "subtitle": "Más de 20 años de experiencia • Arreglos y confección a medida en Zaragoza",
-    "title": "ALTA COSTURA",
+    "title_line_1": "ALTA",
+    "title_line_2": "COSTURA",
     "description": "Cuidamos cada prenda con precisión, delicadeza y acabados profesionales. Un servicio de costura pensado para que tu ropa vuelva a encajar contigo.",
     "cta_presupuesto": "CALCULAR PRESUPUESTO*",
     "cta_contacto": "Contacta con nosotros",
@@ -9,7 +11,6 @@
   },
   "servicios_section": {
     "title": "Servicios",
-    "swipe_hint": "Desliza para ver más →",
     "items": [
       {
         "numero": "01",
@@ -44,15 +45,15 @@
     ]
   },
   "presupuesto_section": {
-    "title": "Calcula tu arreglo"
+    "title": "Calcular presupuesto"
   },
   "taller_section": {
-    "subtitle": "Donde la precisión se convierte en arte.",
     "title": "El Taller",
-    "swipe_hint": "Desliza para ver más →"
+    "reviews_label": "Espacio reservado para opiniones reales",
+    "reviews_eyebrow": "Próximamente",
+    "reviews_placeholder": "Opiniones y prendas de personas reales."
   },
   "contacto_section": {
-    "subtitle": "Hablemos de tu prenda.",
     "title": "Contacto",
     "ubicacion_title": "Taller & Ubicación",
     "ciudad": "Zaragoza, España",
@@ -99,7 +100,7 @@
   },
   "footer": {
     "rights": "Confecciones SV",
-    "dev": "Diseño y desarrollo: Kevin Gómez",
+    "dev": "Designed by Kevin Gómez",
     "legal_nav_label": "Información legal",
     "legal_notice": "Aviso legal",
     "privacy": "Privacidad",
@@ -117,6 +118,8 @@
     "from": "Desde",
     "back": "Volver",
     "estimate_title": "PRESUPUESTO ESTIMADO",
+    "garment_label": "Prenda",
+    "service_label": "Servicio",
     "total_base": "Total Base",
     "disclaimer": "* El precio es orientativo. El coste final depende del tejido, la dificultad y el acabado de la prenda.",
     "whatsapp": "Solicitar por WhatsApp",

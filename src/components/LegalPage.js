@@ -5,7 +5,7 @@ export default function LegalPage({ document, lang }) {
   return (
     <main className="min-h-screen bg-[#171412] px-5 py-10 text-[#F8EFE2] md:py-16">
       <article className="mx-auto max-w-3xl">
-        <Link href={`/${lang}`} className="font-sans text-xs font-semibold uppercase tracking-[0.07em] text-[#D8B66A] hover:text-white">← {document.back}</Link>
+        <Link href={`/${lang}`} className="font-sans text-xs font-semibold uppercase tracking-[0.07em] text-[#D8B66A] hover:text-white">{document.back}</Link>
         <header className="border-b border-white/10 pb-8 pt-10">
           <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.08em] text-[#D8B66A]">Confecciones SV</p>
           <h1 className="font-serif text-4xl md:text-6xl">{document.title}</h1>
