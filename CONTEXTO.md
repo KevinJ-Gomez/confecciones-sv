@@ -25,6 +25,7 @@
 20. Sincronización Continua: Notificación obligatoria al añadir información nueva.
 21. Código Completo Obligatorio: Siempre devolver el archivo completo + explicación.
 22. Checklist Visible: Comprobar normas visiblemente antes de responder.
+23. Árbol de Directorios Vivo: Actualizar mapa de archivos en la Sección 6 al crear/borrar ficheros.
 
 ## 2. INFORMACIÓN DEL CLIENTE Y NEGOCIO
 - **Empresa:** Confecciones SV.
@@ -46,12 +47,37 @@
 ## 4. ESTADO ACTUAL DEL DESARROLLO Y ARQUITECTURA
 - **Stack:** Next.js 16 (App Router), TailwindCSS v4, Framer Motion.
 - **Estructura i18n:** Patrón de diccionarios en servidor (`src/dictionaries/es.json` y `en.json`) inyectados por parámetros de ruta dinámica `[lang]`.
-- **Hito Actual:** Calculadora finalizada (`Calculadora.jsx`).
+- **Hito Actual:** Header Global implementado.
 - **Logros Recientes / Arquitectura UI:**
-  - **Componente Calculadora:** Arquitectura de *Stacking Cards* (Tarjetas apiladas en el Eje Z) usando `AnimatePresence` y físicas `spring` de Framer Motion.
-  - **Flujo de 3 Pasos:** 1. Prenda (Tarjeta clara) -> 2. Servicio (Tarjeta oscura) -> 3. Presupuesto Base (Tarjeta clara).
-  - **Lógica de Negocio (UX):** Los precios se muestran con la etiqueta "Desde" (badge dorado). Incluye un "disclaimer" elegante para proteger la tarifa final, indicando que depende del tejido.
-  - **Conversión:** Botón de WhatsApp pre-formatea el mensaje del cliente asumiendo que el precio es "orientativo". Se incluye *fallback* para escritorio (enlaces `tel:` con ambos números de teléfono).
+  - **Componente Calculadora (`Calculadora.js`):** Arquitectura de *Stacking Cards* con flujos (Prenda -> Servicio -> Presupuesto) y botón dinámico a WhatsApp.
+  - **Componente Header (`Header.js`):** Diseño de 3 columnas para centrado absoluto del logo, efecto `backdrop-blur` y conmutador de idioma dinámico.
 
-## 5. INSTRUCCIÓN DE ARRANQUE PARA LA IA
-Al leer esto, confirma que has asimilado las 22 normas, la información del cliente, el branding y el estado exacto del componente `Calculadora.jsx`. Prepárate para proponerme el siguiente Issue a abordar.
+## 5. ÁRBOL DE DIRECTORIOS ACTIVO
+Representación fiel de la estructura de archivos del proyecto para evitar alucinaciones de ruta.
+
+```text
+/
+├── public/
+│   └── assets/
+│       ├── branding/
+│       │   ├── logo-completo.svg
+│       │   └── logo-monograma.svg
+│       └── client-raw/
+├── src/
+│   ├── app/
+│   │   └── [lang]/
+│   │       ├── globals.css
+│   │       ├── layout.js
+│   │       └── page.js
+│   ├── components/
+│   │   ├── AnimatedThread.js   <-- NUEVO
+│   │   ├── Calculadora.js
+│   │   └── Header.js
+│   └── dictionaries/
+│       ├── en.json
+│       └── es.json
+├── CONTEXTO.md
+└── package.json / configuraciones base
+
+## 6. INSTRUCCIÓN DE ARRANQUE PARA LA IA
+Al leer esto, confirma que has asimilado las 23 normas, el árbol de directorios y el estado exacto del proyecto. Prepárate para proponerme el siguiente Issue a abordar.
