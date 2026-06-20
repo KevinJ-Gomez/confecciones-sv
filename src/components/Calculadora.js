@@ -162,7 +162,7 @@ export default function Calculadora({ dict }) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
-      className="relative flex min-h-[600px] w-full justify-center py-8"
+      className="relative flex min-h-[500px] w-full justify-center py-3 md:min-h-[530px]"
       style={{ perspective: "2000px" }}
     >
       <motion.div
@@ -173,9 +173,9 @@ export default function Calculadora({ dict }) {
         {/* PASO 1 */}
         {/* ======================================= */}
         <motion.div variants={step1Variants} animate={currentStep === 1 ? "active" : "background"} className="absolute w-full">
-          <div className="relative overflow-hidden rounded-sm border border-white/5 bg-[#171412]/80 p-10 md:p-14 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-sm border border-white/5 bg-[#171412]/80 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl md:p-9">
             
-            <div className="mb-10 flex items-center justify-between">
+            <div className="mb-6 flex items-center justify-between">
               <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A]">
                 {dict?.step || "[ PASO 01 ]"}
               </span>
@@ -184,7 +184,7 @@ export default function Calculadora({ dict }) {
               </span>
             </div>
 
-            <h2 className="mb-10 font-serif text-4xl md:text-5xl leading-[1.1] tracking-tighter text-[#FFF5E8]">
+            <h2 className="mb-7 font-serif text-3xl leading-[1.1] tracking-tighter text-[#FFF5E8] md:text-4xl">
               {dict?.question || "¿Qué prenda vamos a trabajar?"}
             </h2>
 
@@ -220,9 +220,9 @@ export default function Calculadora({ dict }) {
         <AnimatePresence>
           {currentStep === 2 && (
             <motion.div variants={step2Variants} initial="hidden" animate="visible" exit="exit" className="absolute w-full">
-              <div className="relative rounded-sm border border-white/5 bg-[#171412]/90 p-10 md:p-14 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl">
+              <div className="relative rounded-sm border border-white/5 bg-[#171412]/90 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl md:p-9">
                 
-                <div className="mb-8 flex items-center justify-between">
+                <div className="mb-5 flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A]">
                     {dict?.step2 || "[ PASO 02 ]"}
                   </span>
@@ -231,13 +231,13 @@ export default function Calculadora({ dict }) {
                   </span>
                 </div>
 
-                <h2 className="mb-10 font-serif text-4xl md:text-5xl leading-[1.1] tracking-tighter text-[#FFF5E8]">
+                <h2 className="mb-6 font-serif text-3xl leading-[1.1] tracking-tighter text-[#FFF5E8] md:text-4xl">
                   {dict?.service_question || "¿Qué servicio aplicamos?"}
                 </h2>
 
-                <div className="mb-10 flex flex-col gap-2">
+                <div className="mb-6 flex flex-col gap-2">
                   {selectedPrenda?.services?.map((servicio, index) => (
-                    <motion.button key={servicio.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + index * 0.1 }} onClick={() => handleSelectService(servicio)} className={`group relative flex w-full items-center justify-between border px-4 py-4 text-left outline-none transition-colors rounded-sm ${selectedService?.id === servicio.id ? "border-[#D8B66A]/20 bg-[#D8B66A]/10" : "border-transparent bg-white/5 hover:bg-white/10"}`}>
+                    <motion.button key={servicio.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + index * 0.1 }} onClick={() => handleSelectService(servicio)} className={`group relative flex w-full items-center justify-between border px-3 py-3 text-left outline-none transition-colors rounded-sm ${selectedService?.id === servicio.id ? "border-[#D8B66A]/20 bg-[#D8B66A]/10" : "border-transparent bg-white/5 hover:bg-white/10"}`}>
                       <div className="flex items-center">
                         <span className={`absolute left-0 h-full w-1 rounded-l-sm bg-[#D8B66A] transition-opacity duration-300 ${selectedService?.id === servicio.id ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                         <span className={`font-sans text-[15px] md:text-base font-light tracking-wide transition-all duration-300 ${selectedService?.id === servicio.id ? "translate-x-3 text-[#D8B66A]" : "text-[#F8EFE2]/80 group-hover:translate-x-3 group-hover:text-[#D8B66A]"}`}>
@@ -270,7 +270,7 @@ export default function Calculadora({ dict }) {
         <AnimatePresence>
           {currentStep === 3 && (
             <motion.div variants={step3Variants} initial="hidden" animate="visible" exit="exit" className="absolute w-full">
-              <div className="relative rounded-sm border border-white/5 bg-[#171412]/95 p-10 md:p-14 text-left text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+              <div className="relative rounded-sm border border-white/5 bg-[#171412]/95 p-7 text-left text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.8)] backdrop-blur-xl md:p-9">
                 
                 <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#D8B66A]">

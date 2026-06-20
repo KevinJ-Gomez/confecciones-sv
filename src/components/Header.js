@@ -78,18 +78,18 @@ export default function Header({ lang = 'es' }) {
           : 'bg-white/80 backdrop-blur-md border-b border-transparent py-2'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 h-18 flex items-center justify-between md:px-6">
         
         <div className="flex items-center gap-6 md:gap-10">
           <Link href={`/${lang}`} onClick={(e) => handleScrollClick(e, 'inicio')} className="hover:opacity-80 transition-opacity flex items-center h-full outline-none">
             <img 
               src="/assets/branding/logo-completo.svg" 
               alt="Confecciones SV" 
-              className="h-10 md:h-12 w-auto object-contain" 
+              className="h-9 md:h-10 w-auto object-contain"
             />
           </Link>
 
-          <div className="hidden md:block w-px h-8 bg-[#2D2926]/20"></div>
+          <div className="hidden md:block w-px h-7 bg-[#2D2926]/20"></div>
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (

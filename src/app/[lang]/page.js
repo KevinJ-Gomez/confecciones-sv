@@ -72,7 +72,7 @@ export default function Home({ params }) {
     <>
       <Header lang={lang} />
 
-      <main id="inicio" className="relative min-h-screen overflow-hidden bg-[#171412] px-4 pb-12 pt-24 text-[#F8EFE2] md:px-8"
+      <main id="inicio" className="relative min-h-screen overflow-hidden bg-[#171412] px-4 pb-6 pt-18 text-[#F8EFE2] md:px-8"
         style={{
           background: "radial-gradient(circle at 50% -10%, #3A2E20 0%, #171412 60%)",
           perspective: "1200px",
@@ -90,7 +90,7 @@ export default function Home({ params }) {
         </div>
 
         {/* HERO: IMAGEN FLUIDA DE FONDO */}
-        <div className="pointer-events-none absolute left-0 top-0 z-0 h-[65vh] w-full">
+        <div className="pointer-events-none absolute left-0 top-0 z-0 h-[52vh] w-full">
           <img src="/assets/client-raw/hero.jpg" alt="Taller de costura" className="h-full w-full object-cover opacity-30 mix-blend-luminosity" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#171412]/80 to-[#171412]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#171412] via-transparent to-transparent" />
@@ -98,25 +98,25 @@ export default function Home({ params }) {
         </div>
 
         {/* HERO: TEXTO MINIMALISTA Y EDITORIAL */}
-        <section className="relative z-10 mx-auto mb-16 flex min-h-[50vh] w-full max-w-7xl flex-col justify-center pt-[10vh]">
+        <section className="relative z-10 mx-auto mb-8 flex min-h-[42vh] w-full max-w-7xl flex-col justify-center pt-[5vh]">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: "easeOut" }} className="w-full max-w-3xl">
-            <span className="mb-6 block text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A] drop-shadow-md md:text-xs">
+            <span className="mb-4 block text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A] drop-shadow-md md:text-xs">
               {t.page.subtitle}
             </span>
 
-            <h1 className="font-serif text-5xl leading-[0.95] tracking-tighter drop-shadow-2xl md:text-6xl lg:text-[7rem]">
+            <h1 className="font-serif text-5xl leading-[0.95] tracking-tighter drop-shadow-2xl md:text-6xl lg:text-[6rem]">
               <span className="text-[#FFF5E8]">{t.page.title.split(' ')[0]}</span><br />
               <span className="text-[#D8B66A]">{t.page.title.split(' ')[1]}</span>
             </h1>
 
-            <div className="mt-12 flex flex-col items-start gap-3">
-               <div className="flex items-center gap-8">
+            <div className="mt-7 flex flex-col items-start gap-2">
+               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
                  <motion.a href="#presupuesto" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.6 }} whileHover={{ x: 5 }} className="flex items-center gap-2 text-sm font-mono font-semibold uppercase tracking-[0.2em] text-[#D8B66A] transition-colors hover:text-white">
                    {t.page.cta_presupuesto} <span className="text-xl leading-none">→</span>
                  </motion.a>
                  
-                 <motion.a href="#servicios" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} className="hidden text-xs font-mono uppercase tracking-widest text-white/30 transition-colors hover:text-white sm:block">
-                   {t.page.cta_servicios}
+                 <motion.a href="#contacto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} whileHover={{ y: -2 }} className="inline-flex items-center justify-center border border-[#D8B66A]/50 px-4 py-2.5 text-[10px] font-mono font-semibold uppercase tracking-[0.16em] text-[#FFF5E8] transition-colors hover:border-[#D8B66A] hover:bg-[#D8B66A] hover:text-[#171412]">
+                   {t.page.cta_contacto}
                  </motion.a>
                </div>
                
@@ -178,9 +178,9 @@ export default function Home({ params }) {
         </section>
 
         {/* PRESUPUESTO: CALCULADORA COMPACTADA */}
-        <section id="presupuesto" className="relative z-10 mb-20 flex w-full flex-col items-center pt-0">
-          <div className="mb-6 flex flex-col items-center text-center">
-            <h2 className="font-serif text-4xl text-[#FFF5E8]">{t.presupuesto_section.title}</h2>
+        <section id="presupuesto" className="relative z-10 mb-10 flex w-full flex-col items-center pt-0">
+          <div className="mb-1 flex flex-col items-center text-center">
+            <h2 className="font-serif text-3xl text-[#FFF5E8] md:text-4xl">{t.presupuesto_section.title}</h2>
           </div>
           <Calculadora dict={t.calculator} />
           <div className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-[58%]" aria-hidden="true">
@@ -215,12 +215,12 @@ export default function Home({ params }) {
         </section>
 
         {/* CONTACTO: INFORMACIÓN DEL CLIENTE */}
-        <section id="contacto" className="relative z-20 mx-auto w-full max-w-7xl px-4 pt-16 pb-20 border-t border-white/5">
-          <div className="grid md:grid-cols-2 gap-16">
+        <section id="contacto" className="relative z-20 mx-auto w-full max-w-7xl border-t border-white/5 px-1 py-12 md:px-4">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-12">
             <div>
               <span className="text-[10px] font-mono tracking-[0.4em] text-white/40 uppercase mb-4 block">{t.contacto_section.subtitle}</span>
-              <h2 className="mb-12 font-serif text-4xl text-[#FFF5E8] md:text-5xl leading-tight">{t.contacto_section.title}</h2>
-              <div className="flex flex-col gap-8">
+              <h2 className="mb-7 font-serif text-3xl leading-tight text-[#FFF5E8] md:text-4xl">{t.contacto_section.title}</h2>
+              <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-2">{t.contacto_section.ubicacion_title}</h4>
                   <p className="text-lg font-serif text-white/80">{t.contacto_section.ciudad}</p>
@@ -233,7 +233,7 @@ export default function Home({ params }) {
                     <a href="tel:+34602571925" className="text-lg font-serif text-white/80 hover:text-[#D8B66A] transition-colors">602 571 925</a>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-8 border-t border-white/5 pt-8">
+                <div className="grid grid-cols-2 gap-6 border-t border-white/5 pt-5 sm:col-span-2">
                   <div>
                     <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.envios_title}</h4>
                     <ul className="text-sm text-white/60 flex flex-col gap-2">
@@ -249,9 +249,9 @@ export default function Home({ params }) {
                     </ul>
                   </div>
                 </div>
-                <div className="flex flex-col items-start gap-4">
+                <div className="flex flex-row items-center gap-4 sm:col-span-2">
                   <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase">{t.contacto_section.siguenos_title}</h4>
-                  <a href="https://www.facebook.com/" className="inline-flex size-12 items-center justify-center rounded-full border border-white/10 text-white/60 hover:border-[#D8B66A] hover:text-[#D8B66A] transition-colors" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.facebook.com/" className="inline-flex size-10 items-center justify-center rounded-full border border-white/10 text-white/60 hover:border-[#D8B66A] hover:text-[#D8B66A] transition-colors" target="_blank" rel="noopener noreferrer">
                     <span className="sr-only">Facebook</span>
                     <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9.101 23.691v-9.03H6.03v-3.525h3.071V8.59c0-3.041 1.858-4.7 4.576-4.7 1.301 0 2.419.097 2.744.14v3.183l-1.883.001c-1.476 0-1.762.701-1.762 1.73v2.266h3.522l-.459 3.525h-3.063v9.03H9.101z"/>
@@ -267,8 +267,8 @@ export default function Home({ params }) {
         </section>
 
         {/* END MARK & FIRMA DEL DESARROLLADOR */}
-        <div className="relative w-full flex flex-col items-center pb-8 pt-10 z-10 border-t border-white/5">
-          <MonogramaSVG size="endmark" className="mb-8" />
+        <div className="relative z-10 flex w-full flex-col items-center border-t border-white/5 pb-3 pt-6">
+          <MonogramaSVG size="endmark" className="mb-4 !h-12" />
           
           <div className="flex w-full max-w-7xl justify-between items-center px-4 md:px-8 text-[9px] font-mono uppercase tracking-widest text-white/30">
             <span>© {new Date().getFullYear()} {t.footer.rights}</span>
