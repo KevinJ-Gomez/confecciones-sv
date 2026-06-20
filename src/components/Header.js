@@ -139,7 +139,7 @@ export default function Header({ lang = 'es' }) {
         <div className="flex items-center justify-end gap-2">
           <button
             onClick={(event) => handleScrollClick(event, 'contacto')}
-            className="inline-flex items-center border border-[#C5A059]/50 px-2.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.06em] text-[#2D2926] transition-colors hover:bg-[#C5A059] lg:hidden"
+            className="hidden items-center border border-[#C5A059]/50 px-2.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.06em] text-[#2D2926] transition-colors hover:bg-[#C5A059] min-[400px]:inline-flex lg:hidden"
           >
             {lang === 'es' ? 'Contacto' : 'Contact'}
           </button>

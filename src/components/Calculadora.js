@@ -148,8 +148,8 @@ export default function Calculadora({ dict }) {
     : currentStep === 1
       ? "min-h-[330px] md:min-h-[370px]"
       : currentStep === 2
-        ? "min-h-[550px] md:min-h-[580px]"
-        : "min-h-[500px] md:min-h-[540px]";
+        ? "min-h-[680px] md:min-h-[640px]"
+        : "min-h-[580px] md:min-h-[570px]";
 
   // =========================================================================
   // ⚙️ MOTOR DE MENSAJES (Tokenización i18n)

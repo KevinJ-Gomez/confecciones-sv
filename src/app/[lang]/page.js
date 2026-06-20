@@ -93,17 +93,17 @@ export default function Home({ params }) {
           <MonogramaSVG size="header" />
         </div>
 
-        {/* HERO: IMAGEN FLUIDA DE FONDO */}
-        <div className="pointer-events-none absolute left-0 top-0 z-0 h-[52vh] w-full">
-          <img src="/assets/client-raw/hero.jpg" alt="Taller de costura" className="h-full w-full object-cover opacity-30 mix-blend-luminosity" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#171412]/80 to-[#171412]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#171412] via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-[#C8A45D]/10 mix-blend-overlay" />
-        </div>
-
         {/* HERO: TEXTO MINIMALISTA Y EDITORIAL */}
-        <section className="relative z-10 mx-auto mb-8 flex min-h-[42vh] w-full max-w-[1500px] flex-col justify-center pt-[5vh]">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: "easeOut" }} className="w-full max-w-3xl">
+        <section className="relative z-10 isolate mx-auto mb-12 flex min-h-[500px] w-full max-w-[1500px] flex-col justify-center pb-12 pt-8 sm:min-h-[520px] md:mb-8 md:min-h-[42vh] md:pb-8 md:pt-[5vh]">
+          {/* El fondo toma la altura real del hero, incluido el bloque de botones. */}
+          <div className="pointer-events-none absolute -top-18 bottom-0 left-1/2 -z-10 w-screen -translate-x-1/2">
+            <img src="/assets/client-raw/hero.jpg" alt="Taller de costura" className="h-full w-full object-cover opacity-30 mix-blend-luminosity" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#171412]/80 to-[#171412]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#171412] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-[#C8A45D]/10 mix-blend-overlay" />
+          </div>
+
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: "easeOut" }} className="relative z-10 w-full max-w-3xl">
             <span className="mb-4 block font-sans text-xs font-semibold uppercase tracking-[0.24em] text-[#D8B66A] md:text-sm">
               {t.page.brand}
             </span>
@@ -119,16 +119,16 @@ export default function Home({ params }) {
 
             <div className="mt-7 flex flex-col items-start gap-2">
                <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
-                 <motion.a href="#contacto" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.6 }} whileHover={{ y: -2 }} className="inline-flex items-center justify-center bg-[#D8B66A] px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#171412] transition-colors hover:bg-[#FFF5E8]">
+                 <motion.a href="#contacto" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.6 }} whileHover={{ y: -2 }} className="inline-flex w-full max-w-full items-center justify-center bg-[#D8B66A] px-5 py-3 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#171412] transition-colors hover:bg-[#FFF5E8] sm:w-auto">
                    {t.page.cta_contacto}
                  </motion.a>
 
-                 <motion.a href="#presupuesto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} whileHover={{ y: -2 }} className="inline-flex items-center justify-center border border-[#D8B66A]/70 bg-[#D8B66A]/10 px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F4D797] shadow-[0_8px_30px_rgba(216,182,106,0.08)] transition-colors hover:border-[#FFF5E8] hover:bg-[#FFF5E8] hover:text-[#171412]">
+                 <motion.a href="#presupuesto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} whileHover={{ y: -2 }} className="inline-flex w-full max-w-full items-center justify-center border border-[#D8B66A]/70 bg-[#D8B66A]/10 px-5 py-3 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F4D797] shadow-[0_8px_30px_rgba(216,182,106,0.08)] transition-colors hover:border-[#FFF5E8] hover:bg-[#FFF5E8] hover:text-[#171412] sm:w-auto">
                    {t.page.cta_presupuesto}
                  </motion.a>
                </div>
                
-               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1 }} className="mt-1 font-sans text-[10px] uppercase tracking-[0.06em] text-white/45">
+               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1 }} className="mt-1 max-w-full font-sans text-[10px] uppercase leading-relaxed tracking-[0.06em] text-white/45">
                  {t.page.disclaimer_precio}
                </motion.span>
             </div>
