@@ -100,27 +100,27 @@ export default function Home({ params }) {
         <section className="relative z-10 mx-auto mb-16 flex min-h-[50vh] w-full max-w-7xl flex-col justify-center pt-[10vh]">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: "easeOut" }} className="w-full max-w-3xl">
             <span className="mb-6 block text-[10px] font-mono uppercase tracking-[0.4em] text-[#D8B66A] drop-shadow-md md:text-xs">
-              {t.page?.subtitle || "Más de 20 años de experiencia"}
+              {t.page.subtitle}
             </span>
 
             <h1 className="font-serif text-5xl leading-[0.95] tracking-tighter drop-shadow-2xl md:text-6xl lg:text-[7rem]">
-              <span className="text-[#FFF5E8]">{t.page?.title?.split(' ').slice(0, 2).join(' ') || "ALTA"}</span><br />
-              <span className="text-[#D8B66A]">{t.page?.title?.split(' ').slice(2).join(' ') || "COSTURA."}</span>
+              <span className="text-[#FFF5E8]">{t.page.title.split(' ')[0]}</span><br />
+              <span className="text-[#D8B66A]">{t.page.title.split(' ')[1]}</span>
             </h1>
 
             <div className="mt-12 flex flex-col items-start gap-3">
                <div className="flex items-center gap-8">
                  <motion.a href="#presupuesto" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.6 }} whileHover={{ x: 5 }} className="flex items-center gap-2 text-sm font-mono font-semibold uppercase tracking-[0.2em] text-[#D8B66A] transition-colors hover:text-white">
-                   CALCULAR PRESUPUESTO* <span className="text-xl leading-none">→</span>
+                   {t.page.cta_presupuesto} <span className="text-xl leading-none">→</span>
                  </motion.a>
                  
                  <motion.a href="#servicios" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }} className="hidden text-xs font-mono uppercase tracking-widest text-white/30 transition-colors hover:text-white sm:block">
-                   Servicios
+                   {t.page.cta_servicios}
                  </motion.a>
                </div>
                
                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1 }} className="mt-1 text-[9px] font-mono uppercase tracking-widest text-white/40">
-                 * PRECIO ORIENTATIVO SUJETO A CAMBIOS
+                 {t.page.disclaimer_precio}
                </motion.span>
             </div>
           </motion.div>
@@ -134,7 +134,7 @@ export default function Home({ params }) {
 
           <div className="mb-20 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <h2 className="mb-4 font-serif text-3xl text-[#FFF5E8] md:text-5xl">Servicios</h2>
+              <h2 className="mb-4 font-serif text-3xl text-[#FFF5E8] md:text-5xl">{t.servicios_section.title}</h2>
               <div className="h-px w-16 bg-[#D8B66A]" />
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function Home({ params }) {
                 className={`group relative flex cursor-default flex-col items-start ${index === 1 || index === 3 ? "md:mt-12" : ""}`}
               >
                 <div className="w-full h-48 mb-6 overflow-hidden rounded-sm relative border border-white/5">
-                  <img src={servicio.img} alt={servicio.titulo} className="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-90 group-hover:mix-blend-normal transition-all duration-700" />
+                  <img src={servicio.img} alt={t.servicios_section.items[index].titulo} className="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-90 group-hover:mix-blend-normal transition-all duration-700" />
                   <div className="absolute inset-0 bg-[#C8A45D]/10 mix-blend-overlay"></div>
                 </div>
 
@@ -163,15 +163,15 @@ export default function Home({ params }) {
                   <div className="mb-6 h-px w-8 bg-[#D8B66A]/30 transition-all duration-500 group-hover:w-full group-hover:bg-[#D8B66A]" />
                   
                   <h3 className="mb-4 font-serif text-2xl text-[#FFF5E8] transition-colors duration-300 group-hover:text-[#D8B66A]">
-                    {servicio.titulo}
+                    {t.servicios_section.items[index].titulo}
                   </h3>
                   
-                  <p className="max-w-xs text-sm leading-relaxed text-white/50 font-light">{servicio.texto}</p>
-                  <p className={`mt-6 text-[9px] font-mono uppercase tracking-[0.24em] ${servicio.personalizado ? "text-[#D8B66A]" : "text-white/30"}`}>{servicio.extra}</p>
+                  <p className="max-w-xs text-sm leading-relaxed text-white/50 font-light">{t.servicios_section.items[index].texto}</p>
+                  <p className={`mt-6 text-[9px] font-mono uppercase tracking-[0.24em] ${servicio.personalizado ? "text-[#D8B66A]" : "text-white/30"}`}>{t.servicios_section.items[index].extra}</p>
 
                   {servicio.personalizado && (
                     <a href="#contacto" className="mt-6 inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-[#D8B66A] transition-colors hover:text-white">
-                      Consultar precio <span className="text-sm leading-none">→</span>
+                      {t.servicios_section.items[index].cta || "Consultar precio"} <span className="text-sm leading-none">→</span>
                     </a>
                   )}
                 </div>
@@ -183,7 +183,7 @@ export default function Home({ params }) {
         {/* PRESUPUESTO: CALCULADORA COMPACTADA */}
         <section id="presupuesto" className="relative z-10 flex w-full flex-col items-center pt-0 mb-32">
           <div className="mb-6 flex flex-col items-center text-center">
-            <h2 className="font-serif text-4xl text-[#FFF5E8]">Calcula tu arreglo</h2>
+            <h2 className="font-serif text-4xl text-[#FFF5E8]">{t.presupuesto_section.title}</h2>
           </div>
           <Calculadora dict={t.calculator} />
         </section>
@@ -192,8 +192,8 @@ export default function Home({ params }) {
         <section id="artesania" className="relative z-20 mx-auto w-full max-w-7xl px-4 pt-10 pb-20 border-t border-white/5">
            
            <div className="mb-16 flex flex-col items-start md:items-end md:text-right">
-              <span className="text-[10px] font-mono uppercase tracking-[0.35em] text-[#D8B66A]">Donde la precisión se convierte en arte.</span>
-              <h2 className="mt-4 font-serif text-4xl text-[#FFF5E8] md:text-5xl max-w-xl">El Taller.</h2>
+              <span className="text-[10px] font-mono uppercase tracking-[0.35em] text-[#D8B66A]">{t.taller_section.subtitle}</span>
+              <h2 className="mt-4 font-serif text-4xl text-[#FFF5E8] md:text-5xl max-w-xl">{t.taller_section.title}</h2>
            </div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
@@ -218,16 +218,16 @@ export default function Home({ params }) {
         <section id="contacto" className="relative z-20 mx-auto w-full max-w-7xl px-4 pt-16 pb-20 border-t border-white/5">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
-              <span className="text-[10px] font-mono tracking-[0.4em] text-white/40 uppercase mb-4 block">Hablemos de tu prenda.</span>
-              <h2 className="mb-12 font-serif text-4xl text-[#FFF5E8] md:text-5xl leading-tight">Contacto.</h2>
+              <span className="text-[10px] font-mono tracking-[0.4em] text-white/40 uppercase mb-4 block">{t.contacto_section.subtitle}</span>
+              <h2 className="mb-12 font-serif text-4xl text-[#FFF5E8] md:text-5xl leading-tight">{t.contacto_section.title}</h2>
               <div className="flex flex-col gap-8">
                 <div>
-                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-2">Taller & Ubicación</h4>
-                  <p className="text-lg font-serif text-white/80">Zaragoza, España</p>
-                  <p className="text-sm text-[#D8B66A] mt-1">Horario de taller: 14:00h - 21:00h</p>
+                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-2">{t.contacto_section.ubicacion_title}</h4>
+                  <p className="text-lg font-serif text-white/80">{t.contacto_section.ciudad}</p>
+                  <p className="text-sm text-[#D8B66A] mt-1">{t.contacto_section.horario}</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-2">Comunicación Directa</h4>
+                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-2">{t.contacto_section.comunicacion_title}</h4>
                   <div className="flex flex-col gap-2">
                     <a href="tel:+34657730970" className="text-lg font-serif text-white/80 hover:text-[#D8B66A] transition-colors">657 730 970</a>
                     <a href="tel:+34602571925" className="text-lg font-serif text-white/80 hover:text-[#D8B66A] transition-colors">602 571 925</a>
@@ -238,22 +238,22 @@ export default function Home({ params }) {
             <div className="flex flex-col justify-end gap-12">
               <div className="grid grid-cols-2 gap-8 border-l border-white/5 pl-8">
                 <div>
-                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">Envíos</h4>
+                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.envios_title}</h4>
                   <ul className="text-sm text-white/60 flex flex-col gap-2">
-                    <li><span className="text-[#D8B66A]">→</span> Recogida en mano</li>
-                    <li><span className="text-[#D8B66A]">→</span> A domicilio (+2€)</li>
+                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.envios[0]}</li>
+                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.envios[1]}</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">Pagos</h4>
+                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.pagos_title}</h4>
                   <ul className="text-sm text-white/60 flex flex-col gap-2">
-                    <li><span className="text-[#D8B66A]">→</span> Efectivo (Preferible)</li>
-                    <li><span className="text-[#D8B66A]">→</span> Bizum</li>
+                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.pagos[0]}</li>
+                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.pagos[1]}</li>
                   </ul>
                 </div>
               </div>
               <div className="border-l border-white/5 pl-8 pt-4 flex flex-col items-start gap-4">
-                <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-1">Síguenos</h4>
+                <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-1">{t.contacto_section.siguenos_title}</h4>
                 <a href="https://www.facebook.com/" className="inline-flex size-12 items-center justify-center rounded-full border border-white/10 text-white/60 hover:border-[#D8B66A] hover:text-[#D8B66A] transition-colors" target="_blank" rel="noopener noreferrer">
                   <span className="sr-only">Facebook</span>
                   <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
@@ -270,16 +270,15 @@ export default function Home({ params }) {
           <MonogramaSVG size="endmark" className="mb-8" />
           
           <div className="flex w-full max-w-7xl justify-between items-center px-4 md:px-8 text-[9px] font-mono uppercase tracking-widest text-white/30">
-            <span>© {new Date().getFullYear()} Confecciones SV</span>
+            <span>© {new Date().getFullYear()} {t.footer.rights}</span>
             
-            {/* Aquí configuras el destino: Reemplaza la URL por la tuya de LinkedIn */}
             <a 
               href="https://www.linkedin.com/in/kevin-gomez-ulloa-dev" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:text-[#D8B66A] transition-colors"
             >
-              Developed by Kevin Johan Gómez
+              {t.footer.dev}
             </a>
           </div>
         </div>

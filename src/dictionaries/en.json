@@ -1,72 +1,153 @@
 {
   "page": {
-    "title": "Haute Couture Tailoring",
-    "subtitle": "Restoration & Alterations Workshop."
+    "subtitle": "Over 20 years of experience • Custom tailoring and alterations in Zaragoza",
+    "title": "HAUTE COUTURE.",
+    "description": "We care for each garment with precision, delicacy, and professional finishes. A sewing service designed to make your clothes fit you perfectly again.",
+    "cta_presupuesto": "ESTIMATE PRICE*",
+    "cta_servicios": "Services",
+    "disclaimer_precio": "* ESTIMATED PRICE SUBJECT TO CHANGE"
+  },
+  "servicios_section": {
+    "title": "Services",
+    "items": [
+      {
+        "numero": "01",
+        "titulo": "Zipper replacement",
+        "texto": "We repair and replace zippers on delicate garments, jackets, pants, and dresses.",
+        "extra": "Estimated price in calculator",
+        "img": "/assets/client-raw/cremallera.jpg"
+      },
+      {
+        "numero": "02",
+        "titulo": "Custom tailoring",
+        "texto": "We adapt your garments: hems, waists, sleeves, suits, dresses, and special clothing.",
+        "extra": "Estimated price in calculator",
+        "img": "/assets/client-raw/ajustes.jpg"
+      },
+      {
+        "numero": "03",
+        "titulo": "General alterations",
+        "texto": "Sewing solutions to extend the life of your clothes and recover garments you still want to wear.",
+        "extra": "Estimated price in calculator",
+        "img": "/assets/client-raw/arreglos.jpg"
+      },
+      {
+        "numero": "04",
+        "titulo": "Custom garments",
+        "texto": "We create new garments from scratch, taking measurements and agreeing on design, fabric, and finish.",
+        "extra": "Custom quote",
+        "personalizado": true,
+        "img": "/assets/client-raw/medida.jpg",
+        "cta": "Request quote"
+      }
+    ]
+  },
+  "presupuesto_section": {
+    "title": "Estimate your tailoring"
+  },
+  "taller_section": {
+    "subtitle": "Where precision becomes art.",
+    "title": "The Atelier."
+  },
+  "contacto_section": {
+    "subtitle": "Let's talk about your garment.",
+    "title": "Contact.",
+    "ubicacion_title": "Atelier & Location",
+    "ciudad": "Zaragoza, Spain",
+    "recepcion": "Order reception all day.",
+    "horario": "Atelier hours: 14:00h - 21:00h",
+    "comunicacion_title": "Direct Communication",
+    "envios_title": "Shipping",
+    "envios": [
+      "In-store pickup",
+      "Home delivery (+2€)"
+    ],
+    "pagos_title": "Payments",
+    "pagos": [
+      "Cash (Preferred)",
+      "Bizum / Mobile transfer"
+    ],
+    "siguenos_title": "Follow us"
+  },
+  "footer": {
+    "rights": "Confecciones SV",
+    "dev": "Developed by Kevin Johan Gómez"
   },
   "calculator": {
-    "question": "Which garment are we working on?",
+    "question": "What garment shall we work on?",
     "placeholder": "Select your garment",
-    "step": "[Step 01]",
+    "step": "[ STEP 01 ]",
+    "step2": "[ STEP 02 ]",
+    "service_question": "Which service should we apply?",
     "timeLabel": "Sys.Time:",
-    "awaiting": "AWAITING",
+    "awaiting": "WAITING",
     "ok": "OK",
-"items": [
-      { 
-        "id": "pantalon", 
-        "label": "Trousers / Jeans", 
+    "from": "From",
+    "back": "Go Back",
+    "estimate_title": "ESTIMATED BUDGET",
+    "total_base": "Base Total",
+    "disclaimer": "* Price is an estimate. Final cost depends on fabric, complexity, and finish.",
+    "whatsapp": "Request via WhatsApp",
+    "whatsapp_msg": "Hello, I would like to request an estimate for the {service} service on my {prenda}. I understand the base cost starts from {total}€ and may vary depending on the fabric and final work.",
+    "call_us": "Or call us directly:",
+    "restart": "Start Over",
+    "items": [
+      {
+        "id": "pantalon",
+        "label": "Trousers / Pants",
         "basePrice": 10,
         "services": [
-          { "id": "bajo_normal", "label": "Hemming (Machine)", "price": 8 },
-          { "id": "bajo_mano", "label": "Hemming (Hand-stitched)", "price": 10 },
-          { "id": "estrechar", "label": "Take in Waist/Legs", "price": 12 },
+          { "id": "bajo_normal", "label": "Machine Hemming", "price": 8 },
+          { "id": "bajo_mano", "label": "Hand-stitched Hem", "price": 10 },
+          { "id": "estrechar", "label": "Taper / Take in", "price": 12 },
           { "id": "cremallera", "label": "Zipper Replacement", "price": 11 },
           { "id": "parche", "label": "Patch / Darning", "price": 10 }
         ]
       },
-      { 
-        "id": "camisa", 
-        "label": "Shirt / Blouse", 
+      {
+        "id": "camisa",
+        "label": "Shirt / Blouse",
         "basePrice": 12,
         "services": [
-          { "id": "estrechar", "label": "Take in Sides", "price": 12 },
+          { "id": "estrechar", "label": "Take in Blouse", "price": 12 },
           { "id": "subir_puno", "label": "Shorten Sleeves / Cuffs", "price": 15 },
           { "id": "bajo", "label": "Hemming", "price": 8 }
         ]
       },
-      { 
-        "id": "vestido", 
-        "label": "Dress", 
+      {
+        "id": "vestido",
+        "label": "Dress",
         "basePrice": 20,
         "services": [
           { "id": "bajo_vestido", "label": "Dress Hemming", "price": 20 },
-          { "id": "estrechar", "label": "Take in", "price": 12 },
-          { "id": "ampliar", "label": "Let out", "price": 15 }
+          { "id": "estrechar", "label": "Taper / Take in", "price": 12 },
+          { "id": "ampliar", "label": "Let out / Expand", "price": 15 }
         ]
       },
-      { 
-        "id": "chaqueta", 
-        "label": "Jacket / Blazer", 
+      {
+        "id": "chaqueta",
+        "label": "Jacket / Blazer",
         "basePrice": 15,
         "services": [
           { "id": "cremallera_chaqueta", "label": "Zipper Replacement", "price": 15 },
-          { "id": "subir_puno", "label": "Shorten Sleeves", "price": 15 },
-          { "id": "estrechar", "label": "Take in Sides", "price": 12 }
+          { "id": "subir_puno", "label": "Shorten Cuffs", "price": 15 },
+          { "id": "estrechar", "label": "Taper / Take in", "price": 12 }
         ]
       },
-      { 
-        "id": "falda", 
-        "label": "Skirt", 
+      {
+        "id": "falda",
+        "label": "Skirt",
         "basePrice": 10,
         "services": [
           { "id": "bajo_falda", "label": "Skirt Hemming", "price": 10 },
-          { "id": "estrechar", "label": "Take in", "price": 12 },
-          { "id": "ampliar", "label": "Let out", "price": 15 },
-          { "id": "cambio_goma", "label": "Elastic Band Replacement", "price": 12 }
+          { "id": "estrechar", "label": "Taper / Take in", "price": 12 },
+          { "id": "ampliar", "label": "Let out / Expand", "price": 15 },
+          { "id": "cambio_goma", "label": "Elastic Replacement", "price": 12 }
         ]
       },
-      { 
-        "id": "abrigo", 
-        "label": "Coat", 
+      {
+        "id": "abrigo",
+        "label": "Coat",
         "basePrice": 20,
         "services": [
           { "id": "cremallera_gruesa", "label": "Heavy Zipper Replacement", "price": 20 },
@@ -74,6 +155,5 @@
         ]
       }
     ]
-
   }
 }

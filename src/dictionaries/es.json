@@ -1,16 +1,97 @@
 {
   "page": {
-    "title": "Sastrería de Alta Costura",
-    "subtitle": "Taller de Restauración y Arreglos"
+    "subtitle": "Más de 20 años de experiencia • Arreglos y confección a medida en Zaragoza",
+    "title": "ALTA COSTURA.",
+    "description": "Cuidamos cada prenda con precisión, delicadeza y acabados profesionales. Un servicio de costura pensado para que tu ropa vuelva a encajar contigo.",
+    "cta_presupuesto": "CALCULAR PRESUPUESTO*",
+    "cta_servicios": "Servicios",
+    "disclaimer_precio": "* PRECIO ORIENTATIVO SUJETO A CAMBIOS"
+  },
+  "servicios_section": {
+    "title": "Servicios",
+    "items": [
+      {
+        "numero": "01",
+        "titulo": "Cambio de cremalleras",
+        "texto": "Reparamos y sustituimos cremalleras en prendas delicadas, chaquetas, pantalones y vestidos.",
+        "extra": "Precio orientativo en calculadora",
+        "img": "/assets/client-raw/cremallera.jpg"
+      },
+      {
+        "numero": "02",
+        "titulo": "Ajustes a medida",
+        "texto": "Adaptamos tus prendas: bajos, cintura, mangas, trajes, vestidos y prendas especiales.",
+        "extra": "Precio orientativo en calculadora",
+        "img": "/assets/client-raw/ajustes.jpg"
+      },
+      {
+        "numero": "03",
+        "titulo": "Arreglos generales",
+        "texto": "Soluciones de costura para alargar la vida de tu ropa y recuperar prendas que todavía quieres usar.",
+        "extra": "Precio orientativo en calculadora",
+        "img": "/assets/client-raw/arreglos.jpg"
+      },
+      {
+        "numero": "04",
+        "titulo": "Prendas desde cero",
+        "texto": "Creamos prendas nuevas desde la idea inicial, tomando medidas y acordando diseño, tejido y acabado.",
+        "extra": "Presupuesto personalizado",
+        "personalizado": true,
+        "img": "/assets/client-raw/medida.jpg",
+        "cta": "Consultar precio"
+      }
+    ]
+  },
+  "presupuesto_section": {
+    "title": "Calcula tu arreglo"
+  },
+  "taller_section": {
+    "subtitle": "Donde la precisión se convierte en arte.",
+    "title": "El Taller."
+  },
+  "contacto_section": {
+    "subtitle": "Hablemos de tu prenda.",
+    "title": "Contacto.",
+    "ubicacion_title": "Taller & Ubicación",
+    "ciudad": "Zaragoza, España",
+    "recepcion": "Recepción de pedidos todo el día.",
+    "horario": "Horario de taller: 14:00h - 21:00h",
+    "comunicacion_title": "Comunicación Directa",
+    "envios_title": "Envíos",
+    "envios": [
+      "Recogida en mano",
+      "A domicilio (+2€)"
+    ],
+    "pagos_title": "Pagos",
+    "pagos": [
+      "Efectivo (Preferible)",
+      "Bizum"
+    ],
+    "siguenos_title": "Síguenos"
+  },
+  "footer": {
+    "rights": "Confecciones SV",
+    "dev": "Developed by Kevin Johan Gómez"
   },
   "calculator": {
     "question": "¿Qué prenda vamos a trabajar?",
     "placeholder": "Selecciona tu prenda",
-    "step": "[ Paso 01]",
+    "step": "[ PASO 01 ]",
+    "step2": "[ PASO 02 ]",
+    "service_question": "¿Qué servicio aplicamos?",
     "timeLabel": "Hora.Sis:",
     "awaiting": "ESPERANDO",
     "ok": "OK",
-"items": [
+    "from": "Desde",
+    "back": "Volver",
+    "estimate_title": "PRESUPUESTO ESTIMADO",
+    "total_base": "Total Base",
+    "disclaimer": "* El precio es orientativo. El coste final depende del tejido, la dificultad y el acabado de la prenda.",
+    "whatsapp": "Solicitar por WhatsApp",
+    "whatsapp_msg": "Hola, quiero solicitar presupuesto para el servicio de {service} en {prenda}. Entiendo que el coste base es desde {total}€ y puede variar según el tejido y trabajo final.",
+    "call_us": "O llámanos directamente:",
+    "restart": "Empezar de nuevo",
+    "items": [
       { 
         "id": "pantalon", 
         "label": "Pantalón", 
