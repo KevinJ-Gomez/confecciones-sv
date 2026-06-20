@@ -91,13 +91,22 @@
       "message_placeholder": "Describe la prenda y el arreglo que necesitas…",
       "submit": "Enviar consulta",
       "helper": "Abriremos la aplicación que hayas elegido con tu consulta preparada para que puedas revisarla antes de enviarla.",
+      "privacy_prefix": "He leído la información sobre protección de datos y la",
+      "privacy_link": "política de privacidad",
+      "privacy_controller": "Responsable:",
+      "privacy_summary": "Finalidad: responder tu consulta y preparar el presupuesto solicitado. Base jurídica: medidas precontractuales solicitadas por ti.",
+      "privacy_rights": "Puedes ejercer tus derechos escribiendo a",
       "email_subject": "Nueva consulta de {name}",
       "message_template": "Hola, soy {name}. Mi contacto es {contact}.\n\nServicio: {service}\nConsulta: {message}"
     }
   },
   "footer": {
     "rights": "Confecciones SV",
-    "dev": "Developed by Kevin Johan Gómez"
+    "dev": "Developed by Kevin Johan Gómez",
+    "legal_nav_label": "Información legal",
+    "legal_notice": "Aviso legal",
+    "privacy": "Privacidad",
+    "cookies": "Cookies"
   },
   "calculator": {
     "question": "¿Qué prenda vamos a trabajar?",

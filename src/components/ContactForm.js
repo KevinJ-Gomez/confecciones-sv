@@ -1,6 +1,8 @@
 "use client";
 
-export default function ContactForm({ dict }) {
+import { legalConfig, legalValue } from "../config/legal";
+
+export default function ContactForm({ dict, lang = "es" }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -101,6 +103,27 @@ export default function ContactForm({ dict }) {
           maxLength={800}
           required
         />
+      </label>
+
+      <div className="mt-5 border-l border-[#D8B66A]/40 pl-4 text-[10px] leading-relaxed text-white/40">
+        <p><strong className="font-medium text-white/60">{dict.privacy_controller}</strong> {legalValue("legalName", lang)}.</p>
+        <p>{dict.privacy_summary}</p>
+        <p>{dict.privacy_rights} {legalConfig.email}.</p>
+      </div>
+
+      <label className="mt-4 flex cursor-pointer items-start gap-3 text-[11px] leading-relaxed text-white/50">
+        <input
+          className="mt-0.5 size-4 shrink-0 accent-[#D8B66A]"
+          type="checkbox"
+          name="privacy_acknowledged"
+          required
+        />
+        <span>
+          {dict.privacy_prefix}{" "}
+          <a className="text-[#D8B66A] underline underline-offset-4 hover:text-white" href={`/${lang}/legal/privacidad`} target="_blank" rel="noopener noreferrer">
+            {dict.privacy_link}
+          </a>.
+        </span>
       </label>
 
       <button

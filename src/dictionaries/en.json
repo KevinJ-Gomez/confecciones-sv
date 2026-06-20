@@ -91,13 +91,22 @@
       "message_placeholder": "Describe the garment and alteration you need…",
       "submit": "Send enquiry",
       "helper": "We will open your chosen app with the enquiry ready for you to review before sending.",
+      "privacy_prefix": "I have read the data protection information and the",
+      "privacy_link": "privacy policy",
+      "privacy_controller": "Controller:",
+      "privacy_summary": "Purpose: to answer your enquiry and prepare the requested estimate. Lawful basis: pre-contractual steps requested by you.",
+      "privacy_rights": "You can exercise your rights by writing to",
       "email_subject": "New enquiry from {name}",
       "message_template": "Hello, my name is {name}. My contact details are {contact}.\n\nService: {service}\nEnquiry: {message}"
     }
   },
   "footer": {
     "rights": "Confecciones SV",
-    "dev": "Developed by Kevin Johan Gómez"
+    "dev": "Developed by Kevin Johan Gómez",
+    "legal_nav_label": "Legal information",
+    "legal_notice": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies"
   },
   "calculator": {
     "question": "What garment shall we work on?",

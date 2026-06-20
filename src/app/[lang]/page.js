@@ -261,7 +261,7 @@ export default function Home({ params }) {
               </div>
             </div>
             <div>
-              <ContactForm dict={t.contacto_section.form} />
+              <ContactForm dict={t.contacto_section.form} lang={lang} />
             </div>
           </div>
         </section>
@@ -270,7 +270,13 @@ export default function Home({ params }) {
         <div className="relative z-10 flex w-full flex-col items-center border-t border-white/5 pb-3 pt-6">
           <MonogramaSVG size="endmark" className="mb-4 !h-12" />
           
-          <div className="flex w-full max-w-7xl justify-between items-center px-4 md:px-8 text-[9px] font-mono uppercase tracking-widest text-white/30">
+          <nav aria-label={t.footer.legal_nav_label} className="mb-5 flex flex-wrap justify-center gap-x-5 gap-y-2 px-4 text-[9px] font-mono uppercase tracking-widest text-white/40">
+            <a className="hover:text-[#D8B66A]" href={`/${lang}/legal/aviso-legal`}>{t.footer.legal_notice}</a>
+            <a className="hover:text-[#D8B66A]" href={`/${lang}/legal/privacidad`}>{t.footer.privacy}</a>
+            <a className="hover:text-[#D8B66A]" href={`/${lang}/legal/cookies`}>{t.footer.cookies}</a>
+          </nav>
+
+          <div className="flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 text-center text-[9px] font-mono uppercase tracking-widest text-white/30 sm:flex-row sm:px-8 sm:text-left">
             <span>© {new Date().getFullYear()} {t.footer.rights}</span>
             
             <a 

@@ -47,10 +47,11 @@
 ## 4. ESTADO ACTUAL DEL DESARROLLO Y ARQUITECTURA
 - **Stack:** Next.js 16 (App Router), TailwindCSS v4, Framer Motion.
 - **Estructura i18n:** Patrón de diccionarios en servidor (`src/dictionaries/es.json` y `en.json`) inyectados por parámetros de ruta dinámica `[lang]`.
-- **Hito Actual:** Header Global implementado.
+- **Hito Actual:** Base legal bilingüe y preparación técnica de lanzamiento implementadas; faltan datos fiscales y revisión profesional.
 - **Logros Recientes / Arquitectura UI:**
   - **Componente Calculadora (`Calculadora.js`):** Arquitectura de *Stacking Cards* con flujos (Prenda -> Servicio -> Presupuesto) y botón dinámico a WhatsApp.
   - **Componente Header (`Header.js`):** Diseño de 3 columnas para centrado absoluto del logo, efecto `backdrop-blur` y conmutador de idioma dinámico.
+  - **Base legal:** Configuración central en `src/config/legal.js`, documentos ES/EN, consentimiento informado en el formulario y bloqueo SEO mientras falten datos obligatorios.
 
 ## 5. ÁRBOL DE DIRECTORIOS ACTIVO
 Representación fiel de la estructura de archivos del proyecto para evitar alucinaciones de ruta.
@@ -65,18 +66,33 @@ Representación fiel de la estructura de archivos del proyecto para evitar aluci
 │       └── client-raw/
 ├── src/
 │   ├── app/
-│   │   └── [lang]/
-│   │       ├── globals.css
-│   │       ├── layout.js
-│   │       └── page.js
+│   │   ├── [lang]/
+│   │   │   ├── legal/
+│   │   │   │   └── [document]/page.js
+│   │   │   └── page.js
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   ├── not-found.js
+│   │   ├── robots.js
+│   │   └── sitemap.js
 │   ├── components/
-│   │   ├── AnimatedThread.js   <-- NUEVO
+│   │   ├── AnimatedThread.js
 │   │   ├── Calculadora.js
-│   │   └── Header.js
-│   └── dictionaries/
-│       ├── en.json
-│       └── es.json
+│   │   ├── ContactForm.js
+│   │   ├── Header.js
+│   │   └── LegalPage.js
+│   ├── config/
+│   │   └── legal.js
+│   ├── dictionaries/
+│   │   ├── en.json
+│   │   └── es.json
+│   ├── legal/
+│   │   └── content.js
+│   └── proxy.js
 ├── CONTEXTO.md
+├── INFORMACION-LEGAL-PENDIENTE.md
+├── README.md
 └── package.json / configuraciones base
 
 ## 6. INSTRUCCIÓN DE ARRANQUE PARA LA IA
