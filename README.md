@@ -1,3 +1,25 @@
+# Confecciones SV - Alta Costura Digital
+
+Proyecto de desarrollo web a medida para **Confecciones SV**, un taller de restauración y arreglos en Zaragoza.
+
+##  Tech Stack
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
+- **Internationalization:** Native Server-side i18n (ES/EN)
+
+## 🛠 Características Clave
+- **Calculadora de Presupuestos Dinámica:** Motor de cálculo en tiempo real con integración directa a WhatsApp, permitiendo al cliente conocer un coste estimado antes de contactar.
+- **Arquitectura i18n:** Sistema de diccionarios JSON nativos, evitando dependencias externas y maximizando el SEO.
+- **UX Editorial:** Interfaz diseñada bajo principios de "Alta Costura", priorizando la legibilidad y la elegancia minimalista.
+
+##  Gestión del Proyecto
+Este proyecto fue desarrollado bajo una metodología *Issue-Driven*, documentando cada fase de desarrollo y corrección de bugs, garantizando un código mantenible y escalable.
+
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
