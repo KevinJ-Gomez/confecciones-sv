@@ -1,7 +1,7 @@
 {
   "page": {
     "subtitle": "Más de 20 años de experiencia • Arreglos y confección a medida en Zaragoza",
-    "title": "ALTA COSTURA.",
+    "title": "ALTA COSTURA",
     "description": "Cuidamos cada prenda con precisión, delicadeza y acabados profesionales. Un servicio de costura pensado para que tu ropa vuelva a encajar contigo.",
     "cta_presupuesto": "CALCULAR PRESUPUESTO*",
     "cta_servicios": "Servicios",
@@ -47,16 +47,16 @@
   },
   "taller_section": {
     "subtitle": "Donde la precisión se convierte en arte.",
-    "title": "El Taller."
+    "title": "El Taller"
   },
   "contacto_section": {
     "subtitle": "Hablemos de tu prenda.",
-    "title": "Contacto.",
+    "title": "Contacto",
     "ubicacion_title": "Taller & Ubicación",
     "ciudad": "Zaragoza, España",
     "recepcion": "Recepción de pedidos todo el día.",
     "horario": "Horario de taller: 14:00h - 21:00h",
-    "comunicacion_title": "Comunicación Directa",
+    "comunicacion_title": "Llámanos",
     "envios_title": "Envíos",
     "envios": [
       "Recogida en mano",
@@ -67,7 +67,33 @@
       "Efectivo (Preferible)",
       "Bizum"
     ],
-    "siguenos_title": "Síguenos"
+    "siguenos_title": "Síguenos",
+    "form": {
+      "title": "Cuéntanos qué necesitas",
+      "required_note": "Todos los campos son obligatorios",
+      "send_channel_label": "¿Cómo quieres enviar tu consulta?",
+      "whatsapp_option": "WhatsApp",
+      "email_option": "Email",
+      "name_label": "Nombre",
+      "name_placeholder": "Tu nombre",
+      "contact_label": "Teléfono o email",
+      "contact_placeholder": "Cómo podemos responderte",
+      "service_label": "Servicio",
+      "service_placeholder": "Selecciona una opción",
+      "services": [
+        "Cambio de cremalleras",
+        "Ajustes a medida",
+        "Arreglos generales",
+        "Prenda desde cero",
+        "Otra consulta"
+      ],
+      "message_label": "Mensaje",
+      "message_placeholder": "Describe la prenda y el arreglo que necesitas…",
+      "submit": "Enviar consulta",
+      "helper": "Abriremos la aplicación que hayas elegido con tu consulta preparada para que puedas revisarla antes de enviarla.",
+      "email_subject": "Nueva consulta de {name}",
+      "message_template": "Hola, soy {name}. Mi contacto es {contact}.\n\nServicio: {service}\nConsulta: {message}"
+    }
   },
   "footer": {
     "rights": "Confecciones SV",

@@ -6,6 +6,7 @@ import en from "../../dictionaries/en.json";
 import Calculadora from "../../components/Calculadora";
 import Header from "../../components/Header";
 import AnimatedThread from "../../components/AnimatedThread";
+import ContactForm from "../../components/ContactForm";
 import { motion } from "framer-motion";
 
 const diccionarios = { es, en };
@@ -53,8 +54,8 @@ const fotosTaller = [
 
 function MonogramaSVG({ size = "medium", className = "" }) {
   const sizeMap = {
-    header: "h-12 w-auto opacity-30 mix-blend-screen",
-    watermark: "h-[80vh] w-auto opacity-[0.03] mix-blend-screen",
+    header: "h-12 w-auto opacity-20 brightness-0 invert-[32%] sepia-[18%] saturate-[930%] hue-rotate-[358deg] brightness-[92%] contrast-[86%]",
+    calculatorWatermark: "h-40 w-auto opacity-[0.09] brightness-0 invert-[32%] sepia-[18%] saturate-[930%] hue-rotate-[358deg] brightness-[92%] contrast-[86%] md:h-56",
     endmark: "h-20 w-auto opacity-60 mix-blend-screen"
   };
   return (
@@ -128,10 +129,6 @@ export default function Home({ params }) {
 
         {/* SERVICIOS: DISEÑO CON IMÁGENES INTEGRADAS */}
         <section id="servicios" className="relative z-20 mx-auto mb-32 w-full max-w-7xl px-4">
-          <div className="pointer-events-none absolute right-[-10%] top-[-5%] z-0 overflow-hidden">
-            <MonogramaSVG size="watermark" />
-          </div>
-
           <div className="mb-20 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
               <h2 className="mb-4 font-serif text-3xl text-[#FFF5E8] md:text-5xl">{t.servicios_section.title}</h2>
@@ -181,11 +178,14 @@ export default function Home({ params }) {
         </section>
 
         {/* PRESUPUESTO: CALCULADORA COMPACTADA */}
-        <section id="presupuesto" className="relative z-10 flex w-full flex-col items-center pt-0 mb-32">
+        <section id="presupuesto" className="relative z-10 mb-20 flex w-full flex-col items-center pt-0">
           <div className="mb-6 flex flex-col items-center text-center">
             <h2 className="font-serif text-4xl text-[#FFF5E8]">{t.presupuesto_section.title}</h2>
           </div>
           <Calculadora dict={t.calculator} />
+          <div className="pointer-events-none absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-[58%]" aria-hidden="true">
+            <MonogramaSVG size="calculatorWatermark" />
+          </div>
         </section>
 
         {/* GALERÍA CINEMATOGRÁFICA "EL TALLER" (6 FOTOS) */}
@@ -233,34 +233,35 @@ export default function Home({ params }) {
                     <a href="tel:+34602571925" className="text-lg font-serif text-white/80 hover:text-[#D8B66A] transition-colors">602 571 925</a>
                   </div>
                 </div>
+                <div className="grid grid-cols-2 gap-8 border-t border-white/5 pt-8">
+                  <div>
+                    <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.envios_title}</h4>
+                    <ul className="text-sm text-white/60 flex flex-col gap-2">
+                      <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.envios[0]}</li>
+                      <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.envios[1]}</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.pagos_title}</h4>
+                    <ul className="text-sm text-white/60 flex flex-col gap-2">
+                      <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.pagos[0]}</li>
+                      <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.pagos[1]}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="flex flex-col items-start gap-4">
+                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase">{t.contacto_section.siguenos_title}</h4>
+                  <a href="https://www.facebook.com/" className="inline-flex size-12 items-center justify-center rounded-full border border-white/10 text-white/60 hover:border-[#D8B66A] hover:text-[#D8B66A] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <span className="sr-only">Facebook</span>
+                    <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9.101 23.691v-9.03H6.03v-3.525h3.071V8.59c0-3.041 1.858-4.7 4.576-4.7 1.301 0 2.419.097 2.744.14v3.183l-1.883.001c-1.476 0-1.762.701-1.762 1.73v2.266h3.522l-.459 3.525h-3.063v9.03H9.101z"/>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="flex flex-col justify-end gap-12">
-              <div className="grid grid-cols-2 gap-8 border-l border-white/5 pl-8">
-                <div>
-                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.envios_title}</h4>
-                  <ul className="text-sm text-white/60 flex flex-col gap-2">
-                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.envios[0]}</li>
-                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.envios[1]}</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-3">{t.contacto_section.pagos_title}</h4>
-                  <ul className="text-sm text-white/60 flex flex-col gap-2">
-                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.pagos[0]}</li>
-                    <li><span className="text-[#D8B66A]">→</span> {t.contacto_section.pagos[1]}</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="border-l border-white/5 pl-8 pt-4 flex flex-col items-start gap-4">
-                <h4 className="text-[10px] font-mono tracking-widest text-white/30 uppercase mb-1">{t.contacto_section.siguenos_title}</h4>
-                <a href="https://www.facebook.com/" className="inline-flex size-12 items-center justify-center rounded-full border border-white/10 text-white/60 hover:border-[#D8B66A] hover:text-[#D8B66A] transition-colors" target="_blank" rel="noopener noreferrer">
-                  <span className="sr-only">Facebook</span>
-                  <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9.101 23.691v-9.03H6.03v-3.525h3.071V8.59c0-3.041 1.858-4.7 4.576-4.7 1.301 0 2.419.097 2.744.14v3.183l-1.883.001c-1.476 0-1.762.701-1.762 1.73v2.266h3.522l-.459 3.525h-3.063v9.03H9.101z"/>
-                  </svg>
-                </a>
-              </div>
+            <div>
+              <ContactForm dict={t.contacto_section.form} />
             </div>
           </div>
         </section>
