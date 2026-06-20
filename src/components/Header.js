@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -82,10 +83,12 @@ export default function Header({ lang = 'es' }) {
         
         <div className="flex items-center gap-6 md:gap-10">
           <Link href={`/${lang}`} onClick={(e) => handleScrollClick(e, 'inicio')} className="hover:opacity-80 transition-opacity flex items-center h-full outline-none">
-            <img 
+            <Image
               src="/assets/branding/logo-completo.svg" 
               alt="Confecciones SV" 
-              className="h-9 md:h-10 w-auto object-contain"
+              width={400}
+              height={120}
+              className="h-9 w-auto object-contain md:h-12"
             />
           </Link>
 
@@ -96,7 +99,7 @@ export default function Header({ lang = 'es' }) {
               <button 
                 key={link.id} 
                 onClick={(e) => handleScrollClick(e, link.id)}
-                className="text-xs md:text-sm font-mono font-semibold tracking-[0.15em] uppercase text-[#2D2926] hover:text-[#C5A059] transition-colors outline-none"
+                className="font-sans text-xs font-semibold uppercase tracking-[0.07em] text-[#2D2926] transition-colors outline-none hover:text-[#C5A059] md:text-sm"
               >
                 {link.label}
               </button>
@@ -104,7 +107,14 @@ export default function Header({ lang = 'es' }) {
           </nav>
         </div>
 
-        <div className="flex justify-end items-center">
+        <div className="flex items-center justify-end gap-2">
+          <button
+            onClick={(event) => handleScrollClick(event, 'contacto')}
+            className="inline-flex items-center border border-[#C5A059]/50 px-2.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.06em] text-[#2D2926] transition-colors hover:bg-[#C5A059] md:hidden"
+          >
+            {lang === 'es' ? 'Contacto' : 'Contact'}
+          </button>
+
           {/* ======================================================= */}
           {/* INTERRUPTOR DE IDIOMA ANIMADO CON BANDERAS VECTORIALES */}
           {/* ======================================================= */}

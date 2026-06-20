@@ -14,7 +14,7 @@ export const legalConfig = Object.freeze({
   secondaryPhone: "602 571 925",
   siteUrl: "",
   hostingProvider: "",
-  emailProvider: "",
+  emailProvider: "Google Gmail (cuenta gratuita)",
   privacyRetention: "",
   effectiveDate: "",
   jurisdiction: "Zaragoza, España",

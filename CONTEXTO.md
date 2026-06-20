@@ -79,6 +79,7 @@ Representación fiel de la estructura de archivos del proyecto para evitar aluci
 │   ├── components/
 │   │   ├── AnimatedThread.js
 │   │   ├── Calculadora.js
+│   │   ├── ContactSection.js
 │   │   ├── ContactForm.js
 │   │   ├── Header.js
 │   │   └── LegalPage.js

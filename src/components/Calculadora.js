@@ -143,6 +143,13 @@ export default function Calculadora({ dict }) {
 
   const prendasToRender = dict?.items?.length > 0 ? dict.items : defaultPrendas;
   const total = (selectedService?.price || 0);
+  const heightClass = isOpen
+    ? "min-h-[570px] md:min-h-[590px]"
+    : currentStep === 1
+      ? "min-h-[300px] md:min-h-[340px]"
+      : currentStep === 2
+        ? "min-h-[520px] md:min-h-[540px]"
+        : "min-h-[460px] md:min-h-[500px]";
 
   // =========================================================================
   // ⚙️ MOTOR DE MENSAJES (Tokenización i18n)
@@ -162,17 +169,17 @@ export default function Calculadora({ dict }) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }}
-      className="relative flex min-h-[500px] w-full justify-center py-3 md:min-h-[530px]"
+      className={`relative flex w-full justify-center py-2 transition-[min-height] duration-300 ${heightClass}`}
       style={{ perspective: "2000px" }}
     >
       <motion.div
         style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: "preserve-3d" }}
-        className="relative z-10 flex w-full max-w-md items-center justify-center"
+        className="relative z-10 flex w-full max-w-md items-start justify-center"
       >
         {/* ======================================= */}
         {/* PASO 1 */}
         {/* ======================================= */}
-        <motion.div variants={step1Variants} animate={currentStep === 1 ? "active" : "background"} className="absolute w-full">
+        <motion.div variants={step1Variants} animate={currentStep === 1 ? "active" : "background"} className="absolute top-0 w-full">
           <div className="relative overflow-hidden rounded-sm border border-white/5 bg-[#171412]/80 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl md:p-9">
             
             <div className="mb-6 flex items-center justify-between">
@@ -219,7 +226,7 @@ export default function Calculadora({ dict }) {
         {/* ======================================= */}
         <AnimatePresence>
           {currentStep === 2 && (
-            <motion.div variants={step2Variants} initial="hidden" animate="visible" exit="exit" className="absolute w-full">
+            <motion.div variants={step2Variants} initial="hidden" animate="visible" exit="exit" className="absolute top-0 w-full">
               <div className="relative rounded-sm border border-white/5 bg-[#171412]/90 p-7 text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl md:p-9">
                 
                 <div className="mb-5 flex items-center justify-between">
@@ -269,7 +276,7 @@ export default function Calculadora({ dict }) {
         {/* ======================================= */}
         <AnimatePresence>
           {currentStep === 3 && (
-            <motion.div variants={step3Variants} initial="hidden" animate="visible" exit="exit" className="absolute w-full">
+            <motion.div variants={step3Variants} initial="hidden" animate="visible" exit="exit" className="absolute top-0 w-full">
               <div className="relative rounded-sm border border-white/5 bg-[#171412]/95 p-7 text-left text-[#F8EFE2] shadow-[0_35px_90px_rgba(0,0,0,0.8)] backdrop-blur-xl md:p-9">
                 
                 <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">

@@ -26,7 +26,7 @@ Para cada dato:
 | `registryDetails` | Titular, asesoría o Registro Mercantil | ⬜ Pendiente |
 | `siteUrl` | Titular del dominio o desarrollador | ⬜ Pendiente |
 | `hostingProvider` | Titular de la cuenta de despliegue | ⬜ Pendiente |
-| `emailProvider` | Titular de la cuenta de correo | ⬜ Pendiente |
+| `emailProvider` | Titular de la cuenta de correo | ✅ Confirmado: Google Gmail gratuito |
 | `privacyRetention` | Titular con asesoramiento profesional | ⬜ Pendiente |
 | `effectiveDate` | Titular tras aprobar los textos | ⬜ Pendiente |
 
@@ -278,12 +278,7 @@ Confirmado por =
 
 Es la empresa que almacena y procesa las consultas enviadas por correo. No debe confundirse la dirección visible con el proveedor contractual.
 
-La dirección actual `confecciones.sv10@gmail.com` sugiere Gmail, pero hay que confirmar si se trata de:
-
-- una cuenta personal gratuita de Google;
-- una cuenta de Google Workspace;
-- una cuenta gestionada por otra organización;
-- o una dirección que reenvía mensajes a otro servicio.
+La dirección actual `confecciones.sv10@gmail.com` utiliza una cuenta personal gratuita de Google Gmail, confirmado por el titular.
 
 ### Por qué hace falta
 
@@ -304,11 +299,11 @@ Los mensajes pueden contener nombre, teléfono, correo, descripción de una pren
 - No escribas contraseñas ni códigos de recuperación en este documento.
 - Consulta con un profesional si el servicio utilizado ofrece garantías contractuales adecuadas para el tratamiento empresarial previsto.
 
-### Respuesta pendiente
+### Respuesta confirmada
 
 ```text
-emailProvider =
-Producto o plan exacto =
+emailProvider = Google Gmail (cuenta gratuita)
+Producto o plan exacto = Gmail gratuito
 Propietario de la cuenta =
 Personas con acceso autorizadas y revisadas = sí / no
 Reenvíos o integraciones revisados = sí / no

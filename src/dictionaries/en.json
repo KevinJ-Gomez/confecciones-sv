@@ -9,6 +9,7 @@
   },
   "servicios_section": {
     "title": "Services",
+    "swipe_hint": "Swipe to see more →",
     "items": [
       {
         "numero": "01",
@@ -47,7 +48,8 @@
   },
   "taller_section": {
     "subtitle": "Where precision becomes art.",
-    "title": "The Atelier"
+    "title": "The Atelier",
+    "swipe_hint": "Swipe to see more →"
   },
   "contacto_section": {
     "subtitle": "Let's talk about your garment.",
@@ -70,10 +72,7 @@
     "siguenos_title": "Follow us",
     "form": {
       "title": "Tell us what you need",
-      "required_note": "All fields are required",
-      "send_channel_label": "How would you like to send your enquiry?",
-      "whatsapp_option": "WhatsApp",
-      "email_option": "Email",
+      "quick_note": "No-obligation reply",
       "name_label": "Name",
       "name_placeholder": "Your name",
       "contact_label": "Phone or email",
@@ -89,20 +88,18 @@
       ],
       "message_label": "Message",
       "message_placeholder": "Describe the garment and alteration you need…",
-      "submit": "Send enquiry",
-      "helper": "We will open your chosen app with the enquiry ready for you to review before sending.",
+      "send_whatsapp": "Send via WhatsApp",
+      "send_email": "Send via email",
+      "helper": "We will open your chosen channel with the message ready for review.",
       "privacy_prefix": "I have read the data protection information and the",
       "privacy_link": "privacy policy",
-      "privacy_controller": "Controller:",
-      "privacy_summary": "Purpose: to answer your enquiry and prepare the requested estimate. Lawful basis: pre-contractual steps requested by you.",
-      "privacy_rights": "You can exercise your rights by writing to",
       "email_subject": "New enquiry from {name}",
       "message_template": "Hello, my name is {name}. My contact details are {contact}.\n\nService: {service}\nEnquiry: {message}"
     }
   },
   "footer": {
     "rights": "Confecciones SV",
-    "dev": "Developed by Kevin Johan Gómez",
+    "dev": "Designed and developed by Kevin Gómez",
     "legal_nav_label": "Legal information",
     "legal_notice": "Legal notice",
     "privacy": "Privacy",
