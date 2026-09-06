@@ -10,8 +10,9 @@ description: Coordinates Confecciones SV work across Codex/Astra or Antigravity 
 3. Never invent business facts. Unknown hours, prices, payments, delivery times, guarantees, social accounts, photos or services remain pending until confirmed.
 4. Use GPT-6 Astra only for genuinely difficult work; routine site changes should use efficient models. Antigravity is a valid fallback agent under the same repository rules and skills.
 5. Validate the behavior actually changed, including relevant mobile/desktop viewports for UI changes.
-6. Check accessibility/SEO only to the depth justified by the change, then run lint/build required by the repository before release work.
-7. Before PR completion, use an independent reviewer.
-8. Apply the automatic handoff in `AGENTS.md`: persist material decisions when needed, and before ending substantive work push safe changes and leave the Issue/PR with objective, decisions, changed areas/commits, validation, blockers/unknown client facts, explicit status and exact next action. Never require Kevin to copy a VS Code/ChatGPT conversation or remind you to hand off.
-9. For an owner-assigned task, routine non-destructive branch/commit/push/PR operations are already authorized; destructive Git and release/merge remain gated.
-10. User instructions override general skill guidance unless they conflict with mandatory repository or safety constraints.
+6. For material visual work explicitly assigned by the owner, load `CONTEXTO.md` only for still-current confirmed branding, then `docs/VISUAL-DNA.md` and `.agents/skills/art-direction/SKILL.md`; use `art-director` for preflight/review when useful. Do not reactivate the parked roadmap merely because art-direction infrastructure exists.
+7. Check accessibility/SEO only to the depth justified by the change, then run lint/build required by the repository before release work.
+8. Before PR completion, use an independent reviewer. Material visual work should reach `VISUAL_QA_READY` unless the owner explicitly accepts a known visual exception.
+9. Apply the automatic handoff in `AGENTS.md`: persist material decisions when needed, and before ending substantive work push safe changes and leave the Issue/PR with objective, decisions, changed areas/commits, validation, blockers/unknown client facts, explicit status and exact next action. Never require Kevin to copy a VS Code/ChatGPT conversation or remind you to hand off.
+10. For an owner-assigned task, routine non-destructive branch/commit/push/PR operations are already authorized; destructive Git and release/merge remain gated.
+11. User instructions override general skill guidance unless they conflict with mandatory repository or safety constraints.
