@@ -39,6 +39,15 @@ Before ending substantive work, without waiting for Kevin to ask:
 
 A future ChatGPT/Codex/Antigravity session must be able to reconstruct the task from GitHub without the prior conversation. Kevin should not have to copy plans or summaries between agents.
 
+## Visual design gate — distinctive atelier identity
+- `docs/VISUAL-DNA.md` is the canonical high-level art direction and `.agents/skills/art-direction/SKILL.md` is the anti-generic workflow.
+- The project remains parked: do not create visual/product work unless Kevin explicitly assigns it.
+- For an assigned **material** visual change, read the current confirmed branding/client context, the Visual DNA and art-direction skill before implementing; use the read-only `art-director` for preflight/review when useful.
+- The implementation agent must not invent a new visual language or fabricate business facts/photos/claims to make a design richer.
+- Preserve the atelier/thread/pattern/editorial identity; challenge generic black-and-gold luxury templates and generic SaaS layouts.
+- Small visual maintenance only needs to preserve the existing DNA and be checked in relevant mobile/desktop views.
+- Material visual work should pass rendered logo-off, brand-swap and AI-smell gates before it is called visually complete.
+
 ## Agent orchestration
 - This repository supports both Codex (including GPT-6 Astra) and Google Antigravity.
 - Shared procedures live in `.agents/skills/`; use them instead of duplicating long workflows in prompts.
