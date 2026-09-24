@@ -16,3 +16,17 @@ description: Coordinates Confecciones SV work across Codex/Astra or Antigravity 
 9. Apply the automatic handoff in `AGENTS.md`: persist material decisions when needed, and before ending substantive work push safe changes and leave the Issue/PR with objective, decisions, changed areas/commits, validation, blockers/unknown client facts, explicit status and exact next action. Never require Kevin to copy a VS Code/ChatGPT conversation or remind you to hand off.
 10. For an owner-assigned task, routine non-destructive branch/commit/push/PR operations are already authorized; destructive Git and release/merge remain gated.
 11. User instructions override general skill guidance unless they conflict with mandatory repository or safety constraints.
+
+## Bootstrap comprehension gate
+For a new material writer/reviewer or materially changed mission, require a `BOOTSTRAP_COMPREHENSION_PROOF` before substantive writes.
+
+The proof must bind exact current refs to execution consequences:
+`SOURCE_REF -> MISSION_IMPLICATION`.
+
+It includes:
+`CURRENT_MAIN / ISSUE_PR / LAST_HANDOFF / ROLE / MISSION / LATEST_DELTA / WRITE_ZONE / FORBIDDEN / COLLISIONS / DEPENDENCIES / INVARIANTS / NEGATIVE_CASES / EVIDENCE / STOP`.
+
+A filename checklist or “understood” claim is insufficient. If the agent misses an active writer, required rebase, superseding decision, forbidden zone or STOP condition, bootstrap fails before implementation.
+
+Use `DELTA_BOOTSTRAP` for the same healthy worker on the same stable mission; do not repeat full proof by ritual.
+
