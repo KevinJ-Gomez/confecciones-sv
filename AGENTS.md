@@ -60,3 +60,16 @@ A future ChatGPT/Codex/Antigravity session must be able to reconstruct the task 
 - Validate the behavior actually changed.
 - UI changes should be checked on relevant mobile and desktop sizes.
 - Before release work, run the applicable lint/build checks and use an independent reviewer.
+
+## Atomic handoff cutover — concurrent worker state
+For substantive handoffs with active or recently dispatched workers, the handoff is not complete merely because a snapshot was written.
+
+Rules:
+- `HANDOFF_SNAPSHOT_WRITTEN != HANDOFF_CUTOVER_COMPLETE`.
+- `LATEST_DURABLE_DELTA > HANDOFF_SNAPSHOT`: the receiver checks GitHub activity newer than the handoff/cutover before dispatching, reassigning or merging.
+- `PROMPT_SENT` is a durable mission state. Never represent a sent mission as `READY_TO_SEND` or resend it because an older snapshot says so.
+- `PAUSED_CAPACITY != IDLE`: quota/tool/provider pauses do not release the writer or write-zone. Ownership persists until durable `STOP/CLOSED` or an explicit takeover.
+- Before declaring `HANDOFF_READY`, reconcile one final time: current main/PR HEAD, active mission, writer, prompt dispatch state, worker state, write-zone ownership, blockers, resume trigger and next Director action.
+- If any dispatch/state change happens while preparing the handoff, reconcile the handoff again before rotating.
+- Keep this proportional: this cutover discipline applies when concurrent mission state can drift, not to trivial one-agent tasks.
+
