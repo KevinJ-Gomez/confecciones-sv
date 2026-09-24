@@ -73,3 +73,28 @@ Rules:
 - If any dispatch/state change happens while preparing the handoff, reconcile the handoff again before rotating.
 - Keep this proportional: this cutover discipline applies when concurrent mission state can drift, not to trivial one-agent tasks.
 
+## BOOTSTRAP_COMPREHENSION_PROOF — material/new-agent missions
+For `FULL_BOOTSTRAP` or `FOCAL_BOOTSTRAP` on a material mission, reading a source list is not enough. Before the first substantive product write, the worker must produce a compact comprehension proof.
+
+Minimum fields:
+- `CURRENT_MAIN / ACTIVE_ISSUE_PR / LAST_HANDOFF`;
+- `ROLE / MODE`;
+- `MISSION / LATEST_ACCEPTED_DELTA`;
+- `WRITE_ZONE / FORBIDDEN_ZONES`;
+- `ACTIVE_WRITER_COLLISIONS / DEPENDENCIES`;
+- `REQUIRED_SOURCES_READ` with at least one mission-changing implication from each material authority, not just filenames;
+- `INVARIANTS / NEGATIVE_CASES`;
+- `EVIDENCE / REVIEWERS`;
+- `STOP_CONDITION`.
+
+Rules:
+- `SOURCE_LIST_READ != SOURCE_CONTRACT_UNDERSTOOD`.
+- `ROLE_SPEC_READ != ROLE_COMPLIANCE`.
+- A generic “read/understood” statement is not a pass.
+- If the worker cannot state how a required source changes execution, scope, evidence or STOP, bootstrap is incomplete.
+- For the same healthy worker continuing the same unchanged mission, `DELTA_BOOTSTRAP` may provide only the changed refs/implications.
+- Material closeout/reviewer checks the final implementation against this proof and the latest durable delta; the proof does not override newer accepted authority.
+- Keep this proportional: trivial one-agent maintenance does not require a durable bootstrap comment.
+
+For multi-agent or handoff-sensitive material work, persist the proof in the target Issue/PR (or another project-approved durable mission record) so a fresh Director can verify what the worker believed before it wrote.
+
