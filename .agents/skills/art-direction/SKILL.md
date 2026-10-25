@@ -1,9 +1,11 @@
 ---
 name: art-direction
-description: Defines and reviews distinctive frontend art direction while learning from prior rendered failures. Use for new screens, redesigns, visual systems, layout/theme/typography/color/motion changes, or when UI risks looking generic or contextually wrong.
+description: Reviews Confecciones SV atelier identity and pixel-level visual truth for owner-approved material UI changes. Do not use on ordinary fixes or to fabricate client facts.
 ---
 
 # Learning-aware art direction
+
+> Scope: The project is parked. This skill does not authorize restarting visual product work or inventing client content.
 
 The goal is not merely to avoid common AI aesthetics. It is to prevent repeated design failure by converting real QA into reusable design knowledge.
 
